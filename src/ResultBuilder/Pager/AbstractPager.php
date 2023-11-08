@@ -12,7 +12,7 @@ abstract class AbstractPager implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset, $this->pager);
     }

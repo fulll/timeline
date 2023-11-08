@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\Filter\DataHydrator;
 
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Filter\DataHydrator\Entry as TestedModel;
-use mageekguy\atoum;
 
-class Entry extends atoum\test
+class Entry extends test
 {
     public function testBuild()
     {
