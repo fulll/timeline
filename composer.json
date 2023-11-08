@@ -10,15 +10,15 @@
         "homepage": "https://github.com/stephpy/timeline/contributors"
     }],
     "require": {
-        "php": ">=5.6.0",
+        "php": ">=7.4",
         "symfony/options-resolver": "*",
-        "doctrine/common": "~2.2"
+        "doctrine/common": "~2.2|~3.0"
     },
     "require-dev": {
-        "atoum/atoum": "dev-master",
+        "atoum/atoum": "~4.0",
         "pimple/pimple": "*",
         "knplabs/knp-components": "1.*",
-        "symfony/event-dispatcher": "2.*"
+        "symfony/event-dispatcher": "*"
     },
     "suggest": {
         "pimple/pimple": "Use ServiceLocator",

@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\Filter;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Filter\DataHydrator as TestedModel;
-use mageekguy\atoum;
 
-class DataHydrator extends atoum\test
+class DataHydrator extends test
 {
     public function testFilterEmptyLocators()
     {

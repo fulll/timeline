@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\Filter;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Filter\FilterManager as TestedFilterManager;
-use mageekguy\atoum;
 
-class FilterManager extends atoum\test
+class FilterManager extends test
 {
     public function testException()
     {

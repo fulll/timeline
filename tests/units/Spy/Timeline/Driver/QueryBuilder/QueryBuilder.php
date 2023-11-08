@@ -4,13 +4,13 @@ namespace tests\units\Spy\Timeline\Driver\QueryBuilder;
 
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter;
 use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator;
 use Spy\Timeline\Driver\QueryBuilder\QueryBuilder as QueryBuilderTested;
 use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
-use mageekguy\atoum;
 
-class QueryBuilder extends atoum\test
+class QueryBuilder extends test
 {
     public function testLogicalAnd()
     {

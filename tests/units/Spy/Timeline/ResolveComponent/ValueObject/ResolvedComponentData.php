@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData as TestedModel;
-use mageekguy\atoum;
 
-class ResolvedComponentData extends atoum\test
+class ResolvedComponentData extends test
 {
     public function testEmptyModelThrowsException()
     {

@@ -4,11 +4,11 @@ namespace tests\units\Spy\Timeline\Model;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Model\Action as TestedModel;
 use Spy\Timeline\Model\ActionInterface;
-use mageekguy\atoum;
 
-class Action extends atoum\test
+class Action extends test
 {
     public function testConstruct()
     {

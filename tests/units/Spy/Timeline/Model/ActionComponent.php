@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\Model;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Model\ActionComponent as TestedModel;
-use mageekguy\atoum;
 
-class ActionComponent extends atoum\test
+class ActionComponent extends test
 {
     public function testIsText()
     {

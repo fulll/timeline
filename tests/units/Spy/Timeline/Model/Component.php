@@ -4,10 +4,10 @@ namespace tests\units\Spy\Timeline\Model;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Model\Component as TestedModel;
-use mageekguy\atoum;
 
-class Component extends atoum\test
+class Component extends test
 {
     public function testBuildHash()
     {

@@ -4,12 +4,12 @@ namespace Spy\Timeline\Tests\Units\Driver\Redis;
 
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Driver\Redis\ActionManager as TestedModel;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
-use mageekguy\atoum;
 
-class ActionManager extends atoum\test
+class ActionManager extends test
 {
     public function testFindOrCreateComponent()
     {

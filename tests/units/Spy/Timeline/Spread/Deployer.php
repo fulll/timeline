@@ -4,12 +4,12 @@ namespace tests\units\Spy\Timeline\Spread;
 
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
+use atoum\atoum\test;
 use Spy\Timeline\Model\ActionInterface;
 use Spy\Timeline\Model\TimelineInterface;
 use Spy\Timeline\Spread\Deployer as TestedModel;
-use mageekguy\atoum;
 
-class Deployer extends atoum\test
+class Deployer extends test
 {
     public function testDeployUnpublishedAction()
     {
