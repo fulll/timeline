@@ -2,7 +2,7 @@
 
 namespace Spy\Timeline\Filter\DataHydrator;
 
-use Doctrine\Common\Persistence\Proxy;
+use Doctrine\Persistence\Proxy;
 use Spy\Timeline\Model\ActionComponentInterface;
 use Spy\Timeline\Model\ActionInterface;
 
