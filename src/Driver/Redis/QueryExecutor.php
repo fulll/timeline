@@ -23,7 +23,7 @@ class QueryExecutor extends AbstractPager implements QueryExecutorInterface
         }
 
         $offset = ($page - 1) * $maxPerPage;
-        $maxPerPage = $maxPerPage - 1; // due to redis
+        --$maxPerPage; // due to redis
 
         $ids = $this->client->zRevRange($query->key, $offset, ($offset + $maxPerPage));
 

@@ -12,35 +12,29 @@ class DataHydrator extends AbstractFilter implements FilterInterface
     /**
      * @var array
      */
-    protected $locators = array();
+    protected $locators = [];
 
     /**
      * @var array
      */
-    protected $components = array();
+    protected $components = [];
 
     /**
      * @var array
      */
-    protected $entries = array();
-
-    /**
-     * @var boolean
-     */
-    protected $filterUnresolved;
+    protected $entries = [];
 
     /**
      * @param boolean $filterUnresolved filterUnresolved
      */
-    public function __construct($filterUnresolved = false)
+    public function __construct(protected bool $filterUnresolved = false)
     {
-        $this->filterUnresolved = $filterUnresolved;
     }
 
     /**
      * @param LocatorInterface $locator locator
      */
-    public function addLocator(LocatorInterface $locator)
+    public function addLocator(LocatorInterface $locator): void
     {
         $this->locators[] = $locator;
     }
@@ -50,7 +44,7 @@ class DataHydrator extends AbstractFilter implements FilterInterface
      */
     public function filter($collection)
     {
-        if (empty($this->locators)) {
+        if ($this->locators === []) {
             return $collection;
         }
 
@@ -68,15 +62,12 @@ class DataHydrator extends AbstractFilter implements FilterInterface
         return $this->hydrateComponents($collection);
     }
 
-    /**
-     * @param array $components
-     */
     protected function addComponents(array $components)
     {
         foreach ($components as $component) {
             $model = $component->getModel();
             if (!array_key_exists($model, $this->components)) {
-                $this->components[$model] = array();
+                $this->components[$model] = [];
             }
 
             $this->components[$model][$component->getHash()] = $component;
@@ -91,9 +82,9 @@ class DataHydrator extends AbstractFilter implements FilterInterface
      * @throws \Exception
      * @return mixed
      */
-    protected function hydrateComponents($collection)
+    protected function hydrateComponents(mixed $collection)
     {
-        $componentsLocated = array();
+        $componentsLocated = [];
 
         foreach ($this->components as $model => $components) {
             foreach ($this->locators as $locator) {
@@ -121,19 +112,18 @@ class DataHydrator extends AbstractFilter implements FilterInterface
 
                     if (array_key_exists($hash, $componentsLocated) && !empty($componentsLocated[$hash]) && null !== $componentsLocated[$hash]->getData()) {
                         $actionComponent->setComponent($componentsLocated[$hash]);
-                    } else {
-                        if ($this->filterUnresolved) {
-                            if ($collection instanceof PagerInterface) {
-                                $items = iterator_to_array($collection->getIterator());
-                                unset($items[$key]);
-                                $collection->setItems($items);
-                            } elseif (is_array($collection)) {
-                                unset($collection[$key]);
-                            } else {
-                                throw new \Exception('Collection must be an array or a PagerInterface');
-                            }
-                            break;
+                    } elseif ($this->filterUnresolved) {
+                        if ($collection instanceof PagerInterface) {
+                            $items = iterator_to_array($collection->getIterator());
+                            unset($items[$key]);
+                            $collection->setItems($items);
+                        } elseif (is_array($collection)) {
+                            unset($collection[$key]);
+                        } else {
+                            throw new \Exception('Collection must be an array or a PagerInterface');
                         }
+
+                        break;
                     }
                 }
             }

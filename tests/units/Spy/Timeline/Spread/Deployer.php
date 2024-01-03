@@ -2,6 +2,13 @@
 
 namespace tests\units\Spy\Timeline\Spread;
 
+use Spy\Timeline\Driver\TimelineManagerInterface;
+use Spy\Timeline\Spread\Entry\EntryCollection;
+use Spy\Timeline\Driver\ActionManagerInterface;
+use Spy\Timeline\Spread\Entry\Entry;
+use Spy\Timeline\Model\ComponentInterface;
+use Mock\NotificationManagerInterface;
+use Spy\Timeline\Spread\SpreadInterface;
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -11,12 +18,12 @@ use Spy\Timeline\Spread\Deployer as TestedModel;
 
 class Deployer extends test
 {
-    public function testDeployUnpublishedAction()
+    public function testDeployUnpublishedAction(): void
     {
-        $this->if($this->mockClass('\Spy\Timeline\Driver\TimelineManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Entry\EntryCollection', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Driver\ActionManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+        $this->if($this->mockClass('\\' . TimelineManagerInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . EntryCollection::class, '\Mock'))
+            ->and($this->mockClass('\\' . ActionManagerInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($entryCollection = new \Mock\EntryCollection())
             ->and($action = new \Mock\ActionInterface())
             ->and($action->getMockController()->getStatusWanted = 'notpublished')
@@ -28,23 +35,23 @@ class Deployer extends test
         ;
     }
 
-    public function testDeploy()
+    public function testDeploy(): void
     {
-        $this->if($this->mockClass('\Spy\Timeline\Driver\TimelineManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Entry\EntryCollection', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Entry\Entry', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Driver\ActionManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Deployer', '\Mock'))
+        $this->if($this->mockClass('\\' . TimelineManagerInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . EntryCollection::class, '\Mock'))
+            ->and($this->mockClass('\\' . Entry::class, '\Mock'))
+            ->and($this->mockClass('\\' . ActionManagerInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . ComponentInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . TestedModel::class, '\Mock'))
             // ---- notification ----
-            ->and($notifManager = new \Mock\NotificationManagerInterface())
+            ->and($notifManager = new NotificationManagerInterface())
             ->and($notifManager->getMockController()->notify = null)
             // ---- entries ----
             ->and($component = new \Mock\ComponentInterface())
             ->and($entry = new \Mock\Entry($component))
             ->and($entryCollection = new \Mock\EntryCollection())
-            ->and($entryCollection->getMockController()->getIterator = new \ArrayIterator(array('CONTEXT' => array($entry))))
+            ->and($entryCollection->getMockController()->getIterator = new \ArrayIterator(['CONTEXT' => [$entry]]))
             ->and($entryCollection->getMockController()->loadUnawareEntries = null)
             // ---- managers ----
             ->and($timelineManager = new \Mock\TimelineManagerInterface())
@@ -65,12 +72,12 @@ class Deployer extends test
         ;
     }
 
-    public function testSetDelivery()
+    public function testSetDelivery(): void
     {
         $this->if($this->mockGenerator()->orphanize('__construct'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Deployer', '\Mock'))
+            ->and($this->mockClass('\\' . TestedModel::class, '\Mock'))
             ->and($deployer = new \Mock\Deployer())
-            ->exception(function () use ($deployer) {
+            ->exception(static function () use ($deployer): void {
                 $deployer->setDelivery('unknown');
             })
             ->isInstanceOf('\InvalidArgumentException')
@@ -80,13 +87,13 @@ class Deployer extends test
             ->boolean($deployer->isDeliveryImmediate())->isTrue()
             ->and($deployer->setDelivery(TestedModel::DELIVERY_WAIT))
             ->boolean($deployer->isDeliveryImmediate())->isFalse()
-            ;
+        ;
     }
 
-    public function testIsDeliveryImmediate()
+    public function testIsDeliveryImmediate(): void
     {
         $this->if($this->mockGenerator()->orphanize('__construct'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Deployer', '\Mock'))
+            ->and($this->mockClass('\\' . TestedModel::class, '\Mock'))
             ->and($deployer = new \Mock\Deployer())
             ->and($deployer->setDelivery(TestedModel::DELIVERY_IMMEDIATE))
             ->boolean($deployer->isDeliveryImmediate())->isTrue()
@@ -95,13 +102,13 @@ class Deployer extends test
         ;
     }
 
-    public function testProcessSpreads()
+    public function testProcessSpreads(): void
     {
-        $this->if($this->mockClass('\Spy\Timeline\Driver\TimelineManagerInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\Entry\EntryCollection', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Spread\SpreadInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+        $this->if($this->mockClass('\\' . TimelineManagerInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . EntryCollection::class, '\Mock'))
+            ->and($this->mockClass('\\' . SpreadInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
+            ->and($this->mockClass('\\' . ComponentInterface::class, '\Mock'))
 
             ->and($timelineManager = new \Mock\TimelineManagerInterface())
             ->and($entryCollection = new \Mock\EntryCollection())

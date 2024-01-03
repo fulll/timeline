@@ -39,20 +39,17 @@ class Action implements ActionInterface
      */
     protected $duplicated = false;
 
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
+    protected \DateTime $createdAt;
 
     /**
      * @var array
      */
-    protected $actionComponents;
+    protected $actionComponents = [];
 
     /**
      * @var array
      */
-    protected $timelines;
+    protected $timelines = [];
 
     /**
      * Constructor
@@ -60,8 +57,6 @@ class Action implements ActionInterface
     public function __construct()
     {
         $this->createdAt        = new \DateTime();
-        $this->actionComponents = array();
-        $this->timelines        = array();
     }
 
     /**
@@ -88,10 +83,10 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function hasComponent($type)
+    public function hasComponent($type): bool
     {
         foreach ($this->getActionComponents() as $actionComponent) {
-            if ($actionComponent->getType() == $type) {
+            if ($actionComponent->getType() === $type) {
                 return true;
             }
         }
@@ -105,7 +100,7 @@ class Action implements ActionInterface
     public function getComponent($type)
     {
         foreach ($this->getActionComponents() as $actionComponent) {
-            if ($actionComponent->getType() == $type) {
+            if ($actionComponent->getType() === $type) {
                 return $actionComponent->getText() ?: $actionComponent->getComponent();
             }
         }
@@ -114,7 +109,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function getSpreadTime()
+    public function getSpreadTime(): int
     {
         return time();
     }
@@ -122,7 +117,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function isPublished()
+    public function isPublished(): bool
     {
         return $this->statusCurrent == self::STATUS_PUBLISHED;
     }
@@ -130,7 +125,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function hasDuplicateKey()
+    public function hasDuplicateKey(): bool
     {
         return null !== $this->duplicateKey;
     }
@@ -138,9 +133,9 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setIsDuplicated($duplicated)
+    public function setIsDuplicated(bool $duplicated): void
     {
-        $this->duplicated = (bool) $duplicated;
+        $this->duplicated = $duplicated;
     }
 
     /**
@@ -154,19 +149,15 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function getValidStatus()
+    public function getValidStatus(): array
     {
-        return array(
-            self::STATUS_PENDING,
-            self::STATUS_PUBLISHED,
-            self::STATUS_FROZEN,
-        );
+        return [self::STATUS_PENDING, self::STATUS_PUBLISHED, self::STATUS_FROZEN];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function isValidStatus($status)
+    public function isValidStatus($status): bool
     {
         return in_array((string) $status, $this->getValidStatus());
     }
@@ -190,7 +181,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
 
@@ -200,7 +191,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setVerb($verb)
+    public function setVerb(string $verb)
     {
         $this->verb = $verb;
 
@@ -218,7 +209,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStatusCurrent($statusCurrent)
+    public function setStatusCurrent(string $statusCurrent)
     {
         if (!$this->isValidStatus($statusCurrent)) {
             throw new \InvalidArgumentException(sprintf('Status "%s" is not valid, (%s)', $statusCurrent, implode(', ', $this->getValidStatus())));
@@ -240,7 +231,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setStatusWanted($statusWanted)
+    public function setStatusWanted(string $statusWanted)
     {
         if (!$this->isValidStatus($statusWanted)) {
             throw new \InvalidArgumentException(sprintf('Status "%s" is not valid, (%s)', $statusWanted, implode(', ', $this->getValidStatus())));
@@ -262,7 +253,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setDuplicateKey($duplicateKey)
+    public function setDuplicateKey(string $duplicateKey)
     {
         $this->duplicateKey = $duplicateKey;
 
@@ -280,9 +271,9 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function setDuplicatePriority($duplicatePriority)
+    public function setDuplicatePriority(int $duplicatePriority)
     {
-        $this->duplicatePriority = (int) $duplicatePriority;
+        $this->duplicatePriority = $duplicatePriority;
 
         return $this;
     }
@@ -308,7 +299,7 @@ class Action implements ActionInterface
     /**
      * {@inheritdoc}
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }
@@ -322,7 +313,7 @@ class Action implements ActionInterface
         $type = $actionComponent->getType();
 
         foreach ($this->getActionComponents() as $key => $ac) {
-            if ($ac->getType() == $type) {
+            if ($ac->getType() === $type) {
                 unset($this->actionComponents[$key]);
             }
         }

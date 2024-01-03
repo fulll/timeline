@@ -12,15 +12,14 @@ use Spy\Timeline\Exception\ResolveComponentDataException;
  */
 class ResolveComponentModelIdentifier
 {
-    private $model;
+    private readonly \object|\string $model;
 
     private $identifier;
 
     /**
-     * @param string|object     $model
      * @param null|string|array $identifier
      */
-    public function __construct($model, $identifier = null)
+    public function __construct(string|object $model, $identifier = null)
     {
         $this->guardValidModelAndIdentifier($model, $identifier);
         $this->model = $model;
@@ -29,10 +28,8 @@ class ResolveComponentModelIdentifier
 
     /**
      * Gets the model.
-     *
-     * @return object|string
      */
-    public function getModel()
+    public function getModel(): object|string
     {
         return $this->model;
     }
@@ -55,9 +52,9 @@ class ResolveComponentModelIdentifier
      * @param $model
      * @param $identifier
      *
-     * @throws \Spy\Timeline\Exception\ResolveComponentDataException
+     * @throws ResolveComponentDataException
      */
-    private function guardValidModelAndIdentifier($model, $identifier)
+    private function guardValidModelAndIdentifier(\object $model, $identifier)
     {
         if (empty($model) || (!is_object($model) && (null === $identifier || '' === $identifier))) {
             throw new ResolveComponentDataException('Model has to be an object or (a scalar + an identifier in 2nd argument)');

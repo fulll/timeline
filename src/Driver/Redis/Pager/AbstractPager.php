@@ -5,23 +5,10 @@ namespace Spy\Timeline\Driver\Redis\Pager;
 abstract class AbstractPager
 {
     /**
-     * @var string
-     */
-    protected $prefix;
-
-    /**
-     * @var object
-     */
-    protected $client;
-
-    /**
-     * @param object $client client
      * @param string $prefix prefix
      */
-    public function __construct($client, $prefix)
+    public function __construct(protected object $client, protected string $prefix)
     {
-        $this->client = $client;
-        $this->prefix = $prefix;
     }
 
     /**
@@ -31,26 +18,21 @@ abstract class AbstractPager
      */
     public function findActionsForIds(array $ids)
     {
-        if (empty($ids)) {
-            return array();
+        if ($ids === []) {
+            return [];
         }
 
         $datas = $this->client->hmget($this->getActionKey(), $ids);
 
         return array_values(
             array_map(
-                function ($v) {
-                    return unserialize($v);
-                },
+                static fn ($v): mixed => unserialize($v),
                 $datas
             )
         );
     }
 
-    /**
-     * @return string
-     */
-    protected function getActionKey()
+    protected function getActionKey(): string
     {
         return sprintf('%s:action', $this->prefix);
     }

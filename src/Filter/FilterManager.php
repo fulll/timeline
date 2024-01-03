@@ -7,7 +7,7 @@ class FilterManager implements FilterManagerInterface
     /**
      * @var FilterInterface[]
      */
-    protected $filters = array();
+    protected $filters = [];
 
     /**
      * @var boolean
@@ -17,7 +17,7 @@ class FilterManager implements FilterManagerInterface
     /**
      * @param FilterInterface $filter filter
      */
-    public function add(FilterInterface $filter)
+    public function add(FilterInterface $filter): void
     {
         $this->filters[] = $filter;
         $this->sorted    = false;
@@ -48,15 +48,10 @@ class FilterManager implements FilterManagerInterface
      */
     protected function sortFilters()
     {
-        usort($this->filters, function (FilterInterface $a, FilterInterface $b) {
+        usort($this->filters, static function (FilterInterface $a, FilterInterface $b): int {
             $a = $a->getPriority();
             $b = $b->getPriority();
-
-            if ($a == $b) {
-                return 0;
-            }
-
-            return $a < $b ? -1 : 1;
+            return $a <=> $b;
         });
 
         $this->sorted = true;

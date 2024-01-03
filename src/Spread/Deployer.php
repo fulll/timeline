@@ -15,32 +15,16 @@ class Deployer implements DeployerInterface
     /**
      * @var SpreadInterface[]
      */
-    protected $spreads;
+    protected $spreads = [];
 
     /**
      * @var NotifierInterface[]
      */
-    protected $notifiers = array();
+    protected $notifiers = [];
 
-    /**
-     * @var integer
-     */
-    protected $batchSize;
+    protected int $batchSize;
 
-    /**
-     * @var EntryCollection
-     */
-    protected $entryCollection;
-
-    /**
-     * @var boolean
-     */
-    protected $onSubject;
-
-    /**
-     * @var TimelineManagerInterface
-     */
-    protected $timelineManager;
+    protected bool $onSubject;
 
     /**
      * @var string One of the delivery constants in DeployerInterface
@@ -53,10 +37,8 @@ class Deployer implements DeployerInterface
      * @param boolean                  $onSubject       onSubject
      * @param integer                  $batchSize       batch size
      */
-    public function __construct(TimelineManagerInterface $timelineManager, EntryCollection $entryCollection, $onSubject = true, $batchSize = 50)
+    public function __construct(protected TimelineManagerInterface $timelineManager, protected EntryCollection $entryCollection, $onSubject = true, $batchSize = 50)
     {
-        $this->timelineManager = $timelineManager;
-        $this->entryCollection = $entryCollection;
         $this->spreads         = new \ArrayIterator();
         $this->onSubject       = (bool) $onSubject;
         $this->batchSize       = (int) $batchSize;
@@ -65,7 +47,7 @@ class Deployer implements DeployerInterface
     /**
      * {@inheritdoc}
      */
-    public function deploy(ActionInterface $action, ActionManagerInterface $actionManager)
+    public function deploy(ActionInterface $action, ActionManagerInterface $actionManager): void
     {
         if ($action->getStatusWanted() !== ActionInterface::STATUS_PUBLISHED) {
             return;
@@ -85,7 +67,8 @@ class Deployer implements DeployerInterface
                 if (($i % $this->batchSize) == 0) {
                     $this->timelineManager->flush();
                 }
-                $i++;
+
+                ++$i;
             }
         }
 
@@ -108,9 +91,9 @@ class Deployer implements DeployerInterface
     /**
      * {@inheritdoc}
      */
-    public function setDelivery($delivery)
+    public function setDelivery(string $delivery)
     {
-        $availableDelivery = array(self::DELIVERY_IMMEDIATE, self::DELIVERY_WAIT);
+        $availableDelivery = [self::DELIVERY_IMMEDIATE, self::DELIVERY_WAIT];
 
         if (!in_array($delivery, $availableDelivery)) {
             throw new \InvalidArgumentException(sprintf('Delivery "%s" is not supported, (%s)', $delivery, implode(', ', $availableDelivery)));
@@ -122,7 +105,7 @@ class Deployer implements DeployerInterface
     /**
      * {@inheritdoc}
      */
-    public function isDeliveryImmediate()
+    public function isDeliveryImmediate(): bool
     {
         return self::DELIVERY_IMMEDIATE === $this->delivery;
     }
@@ -130,17 +113,15 @@ class Deployer implements DeployerInterface
     /**
      * {@inheritdoc}
      */
-    public function addSpread(SpreadInterface $spread)
+    public function addSpread(SpreadInterface $spread): void
     {
         $this->spreads[] = $spread;
     }
 
     /**
      * @param ActionInterface $action action
-     *
-     * @return EntryCollection
      */
-    public function processSpreads(ActionInterface $action)
+    public function processSpreads(ActionInterface $action): EntryCollection
     {
         if ($this->onSubject) {
             $this->entryCollection->add(new Entry($action->getSubject()), 'GLOBAL');
@@ -158,15 +139,12 @@ class Deployer implements DeployerInterface
     /**
      * {@inheritdoc}
      */
-    public function addNotifier(NotifierInterface $notifier)
+    public function addNotifier(NotifierInterface $notifier): void
     {
         $this->notifiers[] = $notifier;
     }
 
-    /**
-     * @return EntryCollection
-     */
-    public function getEntryCollection()
+    public function getEntryCollection(): EntryCollection
     {
         return $this->entryCollection;
     }

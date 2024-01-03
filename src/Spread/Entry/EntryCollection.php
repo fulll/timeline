@@ -14,33 +14,24 @@ class EntryCollection implements \IteratorAggregate
     /**
      * @var \ArrayIterator
      */
-    protected $coll;
+    protected \Traversable $coll;
 
-    /**
-     * @var boolean
-     */
-    protected $duplicateOnGlobal = true;
-
-    /**
-     * @var integer
-     */
-    protected $batchSize;
+    protected int $batchSize;
 
     /**
      * @param boolean $duplicateOnGlobal Each timeline action are automatically pushed on Global context
      * @param integer $batchSize         batch size
      */
-    public function __construct($duplicateOnGlobal = true, $batchSize = 50)
+    public function __construct(protected bool $duplicateOnGlobal = true, $batchSize = 50)
     {
         $this->coll              = new \ArrayIterator();
-        $this->duplicateOnGlobal = $duplicateOnGlobal;
         $this->batchSize         = (int) $batchSize;
     }
 
     /**
      * @param ActionManagerInterface $actionManager actionManager
      */
-    public function setActionManager(ActionManagerInterface $actionManager)
+    public function setActionManager(ActionManagerInterface $actionManager): void
     {
         $this->actionManager = $actionManager;
     }
@@ -48,7 +39,7 @@ class EntryCollection implements \IteratorAggregate
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->coll;
     }
@@ -57,17 +48,22 @@ class EntryCollection implements \IteratorAggregate
      * @param EntryInterface $entry   entry you want to push
      * @param string         $context context where you want to push
      */
-    public function add(EntryInterface $entry, $context = 'GLOBAL')
+    public function add(EntryInterface $entry, $context = 'GLOBAL'): void
     {
         if (!isset($this->coll[$context])) {
-            $this->coll[$context] = array();
+            $this->coll[$context] = [];
         }
 
         $this->coll[$context][$entry->getIdent()] = $entry;
-
-        if ($this->duplicateOnGlobal && $context !== 'GLOBAL') {
-            $this->add($entry);
+        if (!$this->duplicateOnGlobal) {
+            return;
         }
+
+        if ($context === 'GLOBAL') {
+            return;
+        }
+
+        $this->add($entry);
     }
 
     /**
@@ -84,9 +80,9 @@ class EntryCollection implements \IteratorAggregate
             return;
         }
 
-        $unawareEntries = array();
+        $unawareEntries = [];
 
-        foreach ($this->coll as $context => $entries) {
+        foreach ($this->coll as $entries) {
             foreach ($entries as $entry) {
                 if ($entry instanceof EntryUnaware) {
                     $unawareEntries[$entry->getIdent()] = $entry->getIdent();
@@ -94,12 +90,12 @@ class EntryCollection implements \IteratorAggregate
             }
         }
 
-        if (empty($unawareEntries)) {
+        if ($unawareEntries === []) {
             return;
         }
 
         $components = $this->actionManager->findComponents($unawareEntries);
-        $componentsIndexedByIdent = array();
+        $componentsIndexedByIdent = [];
         foreach ($components as $component) {
             $componentsIndexedByIdent[$component->getHash()] = $component;
         }
@@ -107,7 +103,7 @@ class EntryCollection implements \IteratorAggregate
         unset($components);
 
         $nbComponentCreated = 0;
-        foreach ($this->coll as $context => $entries) {
+        foreach ($this->coll as $entries) {
             foreach ($entries as $entry) {
                 if ($entry instanceof EntryUnaware) {
                     $ident = $entry->getIdent();
@@ -122,7 +118,7 @@ class EntryCollection implements \IteratorAggregate
                         // third argument ensures component is not flushed directly.
                         $component = $this->actionManager->createComponent($entry->getSubjectModel(), $entry->getSubjectId(), false);
 
-                        $nbComponentCreated++;
+                        ++$nbComponentCreated;
 
                         if (($nbComponentCreated % $this->batchSize) == 0) {
                             $this->actionManager->flushComponents();
@@ -147,7 +143,7 @@ class EntryCollection implements \IteratorAggregate
     /**
      * @param boolean $v v
      */
-    public function setDuplicateOnGlobal($v)
+    public function setDuplicateOnGlobal(bool $v): void
     {
         $this->duplicateOnGlobal = $v;
     }
@@ -155,7 +151,7 @@ class EntryCollection implements \IteratorAggregate
     /**
      * Clear entries
      */
-    public function clear()
+    public function clear(): void
     {
         $this->coll = new \ArrayIterator();
     }

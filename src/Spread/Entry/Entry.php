@@ -7,16 +7,10 @@ use Spy\Timeline\Model\ComponentInterface;
 class Entry implements EntryInterface
 {
     /**
-     * @var ComponentInterface
-     */
-    protected $subject;
-
-    /**
      * @param ComponentInterface $subject subject
      */
-    public function __construct(ComponentInterface $subject)
+    public function __construct(protected ComponentInterface $subject)
     {
-        $this->subject = $subject;
     }
 
     /**
@@ -30,7 +24,7 @@ class Entry implements EntryInterface
     /**
      * {@inheritdoc}
      */
-    public function getSubject()
+    public function getSubject(): ComponentInterface
     {
         return $this->subject;
     }

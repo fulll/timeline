@@ -8,8 +8,16 @@ use Spy\Timeline\Notification\NotifierInterface;
 
 interface DeployerInterface
 {
-    const DELIVERY_IMMEDIATE = 'immediate';
-    const DELIVERY_WAIT      = 'wait';
+    /**
+     * @var string
+     */
+    public const DELIVERY_IMMEDIATE = 'immediate';
+
+
+    /**
+     * @var string
+     */
+    public const DELIVERY_WAIT      = 'wait';
 
     /**
      * @param ActionInterface        $action        action
@@ -20,7 +28,7 @@ interface DeployerInterface
     /**
      * @param string $delivery delivery
      */
-    public function setDelivery($delivery);
+    public function setDelivery(string $delivery);
 
     /**
      * @return boolean

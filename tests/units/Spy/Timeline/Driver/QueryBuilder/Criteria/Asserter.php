@@ -9,36 +9,25 @@ use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter as TestedModel;
 
 class Asserter extends test
 {
-    public function testField()
+    public function testField(): void
     {
         $this->if($model = new TestedModel())
             ->object($model->field('field'))
-            ->isInstanceOf('Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter')
+            ->isInstanceOf(TestedModel::class)
             ->string($model->getField())
             ->isEqualTo('field')
         ;
     }
 
-    public function getAsserters()
+    public function getAsserters(): array
     {
-        return array(
-            array('equals', '=', 'string'),
-            array('notEquals', '!=', 'string'),
-            array('in', 'IN', array()),
-            array('notIn', 'NOT IN', array()),
-            array('like', 'LIKE', 'string'),
-            array('notLike', 'NOT LIKE', 'string'),
-            array('lt', '<', 'string'),
-            array('lte', '<=', 'string'),
-            array('gt', '>', 'string'),
-            array('gte', '>=', 'string'),
-        );
+        return [['equals', '=', 'string'], ['notEquals', '!=', 'string'], ['in', 'IN', []], ['notIn', 'NOT IN', []], ['like', 'LIKE', 'string'], ['notLike', 'NOT LIKE', 'string'], ['lt', '<', 'string'], ['lte', '<=', 'string'], ['gt', '>', 'string'], ['gte', '>=', 'string']];
     }
 
     /**
      * @dataProvider getAsserters
      */
-    public function testAsserters($method, $operator, $data)
+    public function testAsserters($method, string $operator, mixed $data): void
     {
         $this->if($model = new TestedModel())
             ->and($resultExpected = new TestedModel())
@@ -52,15 +41,12 @@ class Asserter extends test
     /**
      * @dataProvider getAsserters
      */
-    public function testToArray($method, $operator, $data)
+    public function testToArray($method, string $operator, mixed $data): void
     {
         $this->if($model = new TestedModel())
             ->and($model->field('field'))
             ->and($model->create($operator, $data))
-            ->and($resultExpected = array(
-                'type' => 'expr',
-                'value' => array('field', $operator, $data),
-            ))
+            ->and($resultExpected = ['type' => 'expr', 'value' => ['field', $operator, $data]])
             ->array($model->toArray())
             ->isIdenticalTo($resultExpected)
         ;
@@ -69,16 +55,13 @@ class Asserter extends test
     /**
      * @dataProvider getAsserters
      */
-    public function testFromArray($method, $operator, $data)
+    public function testFromArray($method, string $operator, mixed $data): void
     {
         $this->if($model = new TestedModel())
             ->and($resultExpected = new TestedModel())
             ->and($resultExpected->field('field'))
             ->and($resultExpected->create($operator, $data))
-            ->and($arrayRepresentation = array(
-                'type' => 'expr',
-                'value' => array('field', $operator, $data),
-            ))
+            ->and($arrayRepresentation = ['type' => 'expr', 'value' => ['field', $operator, $data]])
             ->object($model->fromArray($arrayRepresentation))
             ->isEqualTo($resultExpected)
         ;

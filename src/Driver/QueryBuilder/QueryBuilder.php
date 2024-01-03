@@ -10,52 +10,15 @@ use Spy\Timeline\Model\ComponentInterface;
 
 class QueryBuilder
 {
-    /**
-     * @var array
-     */
-    protected $subjects = array();
+    protected array $subjects = [];
+    protected int $page = 1;
+    protected int $maxPerPage = 10;
+    protected array $criterias = [];
+    /**@var array(<string>$field, <string>$way) */
+    protected array $sort = [];
+    protected QueryBuilderFactory $factory;
+    protected static array $fieldLocation = ['context' => 'timeline', 'createdAt' => 'action', 'verb' => 'action', 'type' => 'actionComponent', 'text' => 'actionComponent', 'model' => 'component', 'identifier' => 'component'];
 
-    /**
-     * @var integer
-     */
-    protected $page = 1;
-
-    /**
-     * @var integer
-     */
-    protected $maxPerPage = 10;
-
-    /**
-     * @var array
-     */
-    protected $criterias;
-
-    /**
-     * @var array(<string>$field, <string>way)
-     */
-    protected $sort;
-
-    /**
-     * @var QueryBuilderFactory
-     */
-    protected $factory;
-
-    /**
-     * @var array
-     */
-    protected static $fieldLocation = array(
-        'context'    => 'timeline',
-        'createdAt'  => 'action',
-        'verb'       => 'action',
-        'type'       => 'actionComponent',
-        'text'       => 'actionComponent',
-        'model'      => 'component',
-        'identifier' => 'component',
-    );
-
-    /**
-     * @param QueryBuilderFactory $factory factory
-     */
     public function __construct(QueryBuilderFactory $factory = null)
     {
         if (null === $factory) {
@@ -65,28 +28,19 @@ class QueryBuilder
         $this->factory = $factory;
     }
 
-    /**
-     * @return CriteriaInterface
-     */
-    public function logicalAnd()
+    public function logicalAnd(): Operator
     {
         return $this->createNewOperator(Operator::TYPE_AND, func_get_args());
     }
 
-    /**
-     * @return CriteriaInterface
-     */
-    public function logicalOr()
+    public function logicalOr(): Operator
     {
         return $this->createNewOperator(Operator::TYPE_OR, func_get_args());
     }
 
-    /**
-     * @param string $field field
-     */
-    public function field($field)
+    public function field(string $field)
     {
-        if (!in_array($field, $this->getAvailableFields())) {
+        if (!in_array($field, $this->getAvailableFields(), true)) {
             throw new \InvalidArgumentException(sprintf('Field "%s" not supported, prefer: %s', $field, implode(', ', $this->getAvailableFields())));
         }
 
@@ -96,15 +50,9 @@ class QueryBuilder
         ;
     }
 
-    /**
-     * @param string $type type
-     * @param array  $args args
-     *
-     * @return Operator
-     */
-    public function createNewOperator($type, array $args)
+    public function createNewOperator(string $type, array $args): Operator
     {
-        if (empty($args) || count($args) < 2) {
+        if ($args === [] || count($args) < 2) {
             throw new \InvalidArgumentException(__METHOD__.' accept minimum 2 arguments');
         }
 
@@ -115,22 +63,14 @@ class QueryBuilder
         ;
     }
 
-    /**
-     * @param ComponentInterface $component component
-     *
-     * @return QueryBuilder
-     */
-    public function addSubject(ComponentInterface $component)
+    public function addSubject(ComponentInterface $component): static
     {
         $this->subjects[$component->getHash()] = $component;
 
         return $this;
     }
 
-    /**
-     * @return array
-     */
-    public function getSubjects()
+    public function getSubjects(): array
     {
         return $this->subjects;
     }
@@ -140,7 +80,7 @@ class QueryBuilder
      *
      * @return QueryBuilder
      */
-    public function setCriterias(CriteriaInterface $criteria)
+    public function setCriterias(CriteriaInterface $criteria): static
     {
         $this->criterias = $criteria;
 
@@ -191,11 +131,11 @@ class QueryBuilder
             throw new \InvalidArgumentException(sprintf('Field "%s" not supported, prefer: %s', $field, implode(', ', $this->getAvailableFields())));
         }
 
-        if (!in_array($order, array('ASC', 'DESC'))) {
+        if (!in_array($order, ['ASC', 'DESC'])) {
             throw new \InvalidArgumentException(sprintf('Order "%s" not supported, prefer: ASC or DESC', $order));
         }
 
-        $this->sort = array($field, $order);
+        $this->sort = [$field, $order];
 
         return $this;
     }
@@ -204,7 +144,7 @@ class QueryBuilder
      * @param string $field    field
      * @param string $location location
      */
-    public function addFieldLocation($field, $location)
+    public function addFieldLocation($field, $location): void
     {
         self::$fieldLocation[$field] = $location;
     }
@@ -219,29 +159,26 @@ class QueryBuilder
         return self::$fieldLocation[$field];
     }
 
-    /**
-     * @return array
-     */
-    public function getAvailableFields()
+    public function getAvailableFields(): array
     {
         return array_keys(self::$fieldLocation);
     }
 
     /**
      * @param  array                  $data          data
-     * @param  ActionManagerInterface $actionManager actionManager
+     * @param ActionManagerInterface|null $actionManager actionManager
      * @throws \Exception
      * @return $this
      */
     public function fromArray(array $data, ActionManagerInterface $actionManager = null)
     {
-        if (isset($data['criterias']) && isset($data['criterias']['type'])) {
+        if (isset($data['criterias']['type'])) {
             $criterias = $data['criterias'];
             $type      = $criterias['type'];
 
-            if ('operator' == $type) {
+            if ('operator' === $type) {
                 $method = 'createOperatorFromArray';
-            } elseif ('expr' == $type) {
+            } elseif ('expr' === $type) {
                 $method = 'createAsserterFromArray';
             } else {
                 throw new \Exception('Invalid array, cannot be unserialized');
@@ -259,28 +196,28 @@ class QueryBuilder
         }
 
         if (isset($data['sort'])) {
-            list ($field, $order) = $data['sort'];
+            [$field, $order] = $data['sort'];
             $this->orderBy($field, $order);
         }
 
         if (isset($data['subject']) && !empty($data['subject'])) {
             $subjects = $data['subject'];
 
-            if (!$actionManager) {
+            if ($actionManager === null) {
                 throw new \Exception('Please provide the actionManager to retrieve components');
             }
 
             $components = $actionManager->findComponents($subjects);
 
-            if (count($components) != count($subjects)) {
+            if ((is_countable($components) ? count($components) : 0) !== (is_countable($subjects) ? count($subjects) : 0)) {
                 foreach ($components as $component) {
                     // remove existing components from subjects to keep only new one components
-                    unset($subjects[array_search($component->getHash(), $subjects)]);
+                    unset($subjects[array_search($component->getHash(), $subjects, true)]);
                 }
 
                 // create new components
                 foreach ($subjects as $subject) {
-                    list ($model, $identifier) = explode('#', $subject);
+                    [$model, $identifier] = explode('#', (string) $subject);
                     $components[] = $actionManager->createComponent($model, unserialize($identifier));
                 }
             }
@@ -294,18 +231,12 @@ class QueryBuilder
     }
 
     /**
-     * @return array
+     * @return array{subject: mixed[], page: int, max_per_page: int, criterias: mixed, sort: mixed[]}
      */
-    public function toArray()
+    public function toArray(): array
     {
-        return array(
-            'subject'         => array_values(
-                array_map(function ($v) { return $v->getHash(); }, $this->subjects)
-            ),
-            'page'            => $this->page,
-            'max_per_page'    => $this->maxPerPage,
-            'criterias'       => $this->criterias ? $this->criterias->toArray() : null,
-            'sort'            => $this->sort,
-        );
+        return ['subject'         => array_values(
+            array_map(static fn ($v) => $v->getHash(), $this->subjects)
+        ), 'page'            => $this->page, 'max_per_page'    => $this->maxPerPage, 'criterias'       => $this->criterias ? $this->criterias->toArray() : null, 'sort'            => $this->sort];
     }
 }

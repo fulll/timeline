@@ -1,11 +1,12 @@
 <?php
 
+use Spy\Timeline\ServiceLocator;
 require __DIR__."/../vendor/autoload.php";
 
 $redis = new \Redis();
 $redis->connect('127.0.0.1');
 
-$serviceLocator = new \Spy\Timeline\ServiceLocator();
+$serviceLocator = new ServiceLocator();
 $serviceLocator->addRedisDriver($redis);
 
 $c = $serviceLocator->getContainer();
@@ -19,7 +20,7 @@ $actionManager = $c['action_manager'];
 $chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
 $bruceLee = $actionManager->findOrCreateComponent('User', 'BruceLee');
 
-$action = $actionManager->create($chuck, 'kick', array('directComplement' => $bruceLee));
+$action = $actionManager->create($chuck, 'kick', ['directComplement' => $bruceLee]);
 $actionManager->updateAction($action);
 
 // Pull a timeline of a subject
@@ -30,7 +31,7 @@ $chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
 
 $timeline = $timelineManager->getTimeline($chuck);
 
-print sprintf("---- Timeline Results = (%s) -----\n", count($timeline));
+print sprintf("---- Timeline Results = (%s) -----\n", is_countable($timeline) ? count($timeline) : 0);
 
 foreach ($timeline as $action) {
     $subject = $action->getSubject();
@@ -45,7 +46,7 @@ $chuck = $actionManager->findOrCreateComponent('User', 'Chuck');
 
 $actions = $actionManager->getSubjectActions($chuck);
 
-print sprintf("---- Actions Results = (%s) -----\n", count($actions));
+print sprintf("---- Actions Results = (%s) -----\n", is_countable($actions) ? count($actions) : 0);
 
 foreach ($actions as $action) {
     $subject          = $action->getSubject();

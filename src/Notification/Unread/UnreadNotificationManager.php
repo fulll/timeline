@@ -11,27 +11,21 @@ use Spy\Timeline\Spread\Entry\EntryCollection;
 class UnreadNotificationManager implements NotifierInterface
 {
     /**
-     * @var TimelineManagerInterface
-     */
-    protected $timelineManager;
-
-    /**
      * @param TimelineManagerInterface $timelineManager timelineManager
      */
-    public function __construct(TimelineManagerInterface $timelineManager)
+    public function __construct(protected TimelineManagerInterface $timelineManager)
     {
-        $this->timelineManager = $timelineManager;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function notify(ActionInterface $action, EntryCollection $entryCollection)
+    public function notify(ActionInterface $action, EntryCollection $entryCollection): void
     {
         $i = 0;
         foreach ($entryCollection as $context => $entries) {
             foreach ($entries as $entry) {
-                $i++;
+                ++$i;
                 $this->timelineManager->createAndPersist($action, $entry->getSubject(), $context, 'notification');
             }
         }
@@ -48,7 +42,7 @@ class UnreadNotificationManager implements NotifierInterface
      *
      * @return array
      */
-    public function getUnreadNotifications(ComponentInterface $subject, $context = "GLOBAL", array $options = array())
+    public function getUnreadNotifications(ComponentInterface $subject, $context = "GLOBAL", array $options = [])
     {
         $options['context'] = $context;
         $options['type']    = 'notification';
@@ -66,10 +60,7 @@ class UnreadNotificationManager implements NotifierInterface
      */
     public function countKeys(ComponentInterface $subject, $context = "GLOBAL")
     {
-        $options = array(
-            'context' => $context,
-            'type'    => 'notification',
-        );
+        $options = ['context' => $context, 'type'    => 'notification'];
 
         return $this->timelineManager->countKeys($subject, $options);
     }
@@ -79,11 +70,9 @@ class UnreadNotificationManager implements NotifierInterface
      * @param string             $timelineActionId The actionId
      * @param string             $context          The context
      */
-    public function markAsReadAction(ComponentInterface $subject, $timelineActionId, $context = 'GLOBAL')
+    public function markAsReadAction(ComponentInterface $subject, $timelineActionId, $context = 'GLOBAL'): void
     {
-        $this->markAsReadActions(array(
-            array($context, $subject, $timelineActionId)
-        ));
+        $this->markAsReadActions([[$context, $subject, $timelineActionId]]);
     }
 
     /**
@@ -93,17 +82,13 @@ class UnreadNotificationManager implements NotifierInterface
      *   array( *CONTEXT*, *SUBJECT*, *KEY* )
      *   ....
      * )
-     *
-     * @param array $actions
      */
-    public function markAsReadActions(array $actions)
+    public function markAsReadActions(array $actions): void
     {
-        $options = array(
-            'type' => 'notification',
-        );
+        $options = ['type' => 'notification'];
 
         foreach ($actions as $action) {
-            list($context, $subject, $actionId) = $action;
+            [$context, $subject, $actionId] = $action;
 
             $options['context'] = $context;
 
@@ -119,12 +104,9 @@ class UnreadNotificationManager implements NotifierInterface
      * @param ComponentInterface $subject subject
      * @param string             $context The context
      */
-    public function markAllAsRead(ComponentInterface $subject, $context = "GLOBAL")
+    public function markAllAsRead(ComponentInterface $subject, $context = "GLOBAL"): void
     {
-        $options = array(
-            'context' => $context,
-            'type'    => 'notification',
-        );
+        $options = ['context' => $context, 'type'    => 'notification'];
 
         $this->timelineManager->removeAll($subject, $options);
         $this->timelineManager->flush();

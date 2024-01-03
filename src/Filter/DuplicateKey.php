@@ -16,8 +16,8 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
      */
     public function filter($collection)
     {
-        $duplicateKeys = array();
-        $clonedCollection = array();
+        $duplicateKeys = [];
+        $clonedCollection = [];
 
         foreach ($collection as $key => $value) {
             $clonedCollection[$key] = $value;
@@ -46,16 +46,12 @@ class DuplicateKey extends AbstractFilter implements FilterInterface
                     $duplicateKeys[$currentKey]['duplicated'] = true;
                     unset($collection[$keyToDelete]);
                 } else {
-                    $duplicateKeys[$currentKey] = array(
-                        'key'        => $key,
-                        'priority'   => $currentPriority,
-                        'duplicated' => false,
-                    );
+                    $duplicateKeys[$currentKey] = ['key'        => $key, 'priority'   => $currentPriority, 'duplicated' => false];
                 }
             }
         }
 
-        foreach ($duplicateKeys as $key => $values) {
+        foreach ($duplicateKeys as $values) {
             if ($values['duplicated']) {
                 $action = $collection[$values['key']];
 

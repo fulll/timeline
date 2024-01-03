@@ -9,30 +9,18 @@ use Spy\Timeline\ResultBuilder\QueryExecutor\QueryExecutorInterface;
 class ResultBuilder implements ResultBuilderInterface
 {
     /**
-     * @var FilterManagerInterface
-     */
-    protected $filterManager;
-
-    /**
-     * @var QueryExecutorInterface
-     */
-    protected $queryExecutor;
-
-    /**
      * @var PagerInterface
      */
     protected $pager;
 
-    public function __construct(QueryExecutorInterface $queryExecutor, FilterManagerInterface $filterManager)
+    public function __construct(protected QueryExecutorInterface $queryExecutor, protected FilterManagerInterface $filterManager)
     {
-        $this->queryExecutor = $queryExecutor;
-        $this->filterManager = $filterManager;
     }
 
     /**
      * @param PagerInterface $pager pager
      */
-    public function setPager(PagerInterface $pager)
+    public function setPager(PagerInterface $pager): void
     {
         $this->pager = $pager;
     }
@@ -47,7 +35,7 @@ class ResultBuilder implements ResultBuilderInterface
      * @throws \Exception
      * @return \Traversable
      */
-    public function fetchResults($query, $page = 1, $maxPerPage = 10, $filter = false, $paginate = false)
+    public function fetchResults(mixed $query, $page = 1, $maxPerPage = 10, $filter = false, $paginate = false)
     {
         if ($paginate) {
             if (!$this->pager) {

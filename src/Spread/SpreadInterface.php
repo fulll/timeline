@@ -10,7 +10,6 @@ interface SpreadInterface
     /**
      * You spread class is support the action ?
      *
-     * @param ActionInterface $action
      *
      * @return boolean
      */

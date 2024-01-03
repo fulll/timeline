@@ -12,7 +12,7 @@ interface TimelineManagerInterface
      * @param ComponentInterface $subject subject
      * @param array              $options options
      */
-    public function getTimeline(ComponentInterface $subject, array $options = array());
+    public function getTimeline(ComponentInterface $subject, array $options = []);
 
     /**
      * count how many keys are stored
@@ -22,7 +22,7 @@ interface TimelineManagerInterface
      *
      * @return integer
      */
-    public function countKeys(ComponentInterface $subject, array $options = array());
+    public function countKeys(ComponentInterface $subject, array $options = []);
 
     /**
      * remove key from storage
@@ -33,7 +33,7 @@ interface TimelineManagerInterface
      * @param  array              $options  Array of options
      * @return void
      */
-    public function remove(ComponentInterface $subject, $actionId, array $options = array());
+    public function remove(ComponentInterface $subject, $actionId, array $options = []);
 
     /**
      * remove all keys from storage
@@ -43,7 +43,7 @@ interface TimelineManagerInterface
      * @param  array              $options Array of options
      * @return void
      */
-    public function removeAll(ComponentInterface $subject, array $options = array());
+    public function removeAll(ComponentInterface $subject, array $options = []);
 
     /**
      * create and persist a timeline.

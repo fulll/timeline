@@ -19,7 +19,7 @@ class Component implements ComponentInterface
     /**
      * @var array
      */
-    protected $identifier;
+    protected $identifier = [];
 
     /**
      * Data defined on this component.
@@ -33,7 +33,7 @@ class Component implements ComponentInterface
      */
     public function createFromHash($hash)
     {
-        $data = explode('#', $hash);
+        $data = explode('#', (string) $hash);
         if (count($data) == 1) {
             throw new \InvalidArgumentException('Invalid hash, must be formatted {model}#{hash or identifier}');
         }
@@ -52,13 +52,13 @@ class Component implements ComponentInterface
      */
     public function __sleep()
     {
-        return array('id', 'model', 'identifier', 'hash');
+        return ['id', 'model', 'identifier', 'hash'];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setData($data)
+    public function setData(mixed $data)
     {
         $this->data = $data;
 
@@ -76,7 +76,7 @@ class Component implements ComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
 
@@ -94,13 +94,11 @@ class Component implements ComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function setModel($model)
+    public function setModel(string $model)
     {
         $this->model = $model;
 
-        if (null !== $this->getIdentifier()) {
-            $this->buildHash();
-        }
+        $this->buildHash();
 
         return $this;
     }
@@ -119,17 +117,13 @@ class Component implements ComponentInterface
     public function setIdentifier($identifier)
     {
         if (is_scalar($identifier)) {
-            // to avoid issue of serialization.
-            $identifier = (string) $identifier;
         } elseif (!is_array($identifier)) {
             throw new \InvalidArgumentException('Identifier must be a scalar or an array');
         }
 
         $this->identifier = $identifier;
 
-        if (null !== $this->getModel()) {
-            $this->buildHash();
-        }
+        $this->buildHash();
 
         return $this;
     }

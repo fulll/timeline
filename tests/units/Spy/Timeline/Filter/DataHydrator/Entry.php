@@ -2,6 +2,9 @@
 
 namespace tests\units\Spy\Timeline\Filter\DataHydrator;
 
+use Spy\Timeline\Model\ActionInterface;
+use Spy\Timeline\Model\ActionComponentInterface;
+use Spy\Timeline\Model\ComponentInterface;
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,11 +12,11 @@ use Spy\Timeline\Filter\DataHydrator\Entry as TestedModel;
 
 class Entry extends test
 {
-    public function testBuild()
+    public function testBuild(): void
     {
-        $this->if($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
-            ->if($this->mockClass('\Spy\Timeline\Model\ActionComponentInterface', '\Mock'))
-            ->if($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+        $this->if($this->mockClass('\\' . ActionInterface::class, '\Mock'))
+            ->if($this->mockClass('\\' . ActionComponentInterface::class, '\Mock'))
+            ->if($this->mockClass('\\' . ComponentInterface::class, '\Mock'))
             ->and($component1 = new \Mock\ComponentInterface())
             ->and($component1->getMockController()->getHash = 'hashOA')
             ->and($component2 = new \Mock\ComponentInterface())
@@ -30,16 +33,12 @@ class Entry extends test
             ->and($actionComponent3->getMockController()->getComponent = $component2)
             // action
             ->and($action = new \Mock\ActionInterface())
-            ->and($action->getMockController()->getActionComponents = array($actionComponent1, $actionComponent2, $actionComponent3))
+            ->and($action->getMockController()->getActionComponents = [$actionComponent1, $actionComponent2, $actionComponent3])
             // now ... let's play !
             ->and($entry = new TestedModel($action, 'key'))
             ->when($entry->build())
             ->array($entry->getComponents())
-            ->isIdenticalTo(array(
-                'hashOA' => $component1,
-                'hashoir' => $component2,
-                // not third because has already data setted.
-            ))
+            ->isIdenticalTo(['hashOA' => $component1, 'hashoir' => $component2])
         ;
     }
 }

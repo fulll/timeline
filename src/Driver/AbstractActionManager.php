@@ -16,48 +16,27 @@ abstract class AbstractActionManager implements ActionManagerInterface
      */
     protected $deployer;
 
-    /**
-     * @var string FQCN af the action class
-     */
-    protected $actionClass;
-
-    /**
-     * @var string FQCN of the action component class
-     */
-    protected $componentClass;
-
-    /**
-     * @var string FQCN of the component class
-     */
-    protected $actionComponentClass;
-
-    /**
-     * @var ComponentDataResolverInterface
-     */
-    private $componentDataResolver;
+    private ?ComponentDataResolverInterface $componentDataResolver = null;
 
     /**
      * @param string $actionClass          FQCN of the action class
      * @param string $componentClass       FQCN of the component class
      * @param string $actionComponentClass FQCN of the action component class
      */
-    public function __construct($actionClass, $componentClass, $actionComponentClass)
+    public function __construct(protected string $actionClass, protected string $componentClass, protected string $actionComponentClass)
     {
-        $this->actionClass = $actionClass;
-        $this->componentClass = $componentClass;
-        $this->actionComponentClass = $actionComponentClass;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function create($subject, $verb, array $components = array())
+    public function create($subject, $verb, array $components = [])
     {
         /** @var $action ActionInterface */
         $action = new $this->actionClass();
         $action->setVerb($verb);
 
-        if (!$subject instanceof ComponentInterface and !is_object($subject)) {
+        if (!$subject instanceof ComponentInterface && !is_object($subject)) {
             throw new \Exception('Subject must be a ComponentInterface or an object');
         }
 
@@ -76,7 +55,7 @@ abstract class AbstractActionManager implements ActionManagerInterface
      * @param  mixed           $component component
      * @throws \Exception
      */
-    public function addComponent($action, $type, $component)
+    public function addComponent($action, $type, mixed $component)
     {
         if (!$component instanceof ComponentInterface && !is_scalar($component)) {
             $component = $this->findOrCreateComponent($component);
@@ -96,25 +75,29 @@ abstract class AbstractActionManager implements ActionManagerInterface
      */
     protected function deployActionDependOnDelivery(ActionInterface $action)
     {
-        if ($this->deployer && $this->deployer->isDeliveryImmediate()) {
-            $this->deployer->deploy($action, $this);
+        if (!$this->deployer) {
+            return;
         }
+
+        if (!$this->deployer->isDeliveryImmediate()) {
+            return;
+        }
+
+        $this->deployer->deploy($action, $this);
     }
 
     /**
      * @param DeployerInterface $deployer deployer
      */
-    public function setDeployer(DeployerInterface $deployer)
+    public function setDeployer(DeployerInterface $deployer): void
     {
         $this->deployer = $deployer;
     }
 
     /**
      * Sets the component data resolver.
-     *
-     * @param ComponentDataResolverInterface $componentDataResolver
      */
-    public function setComponentDataResolver(ComponentDataResolverInterface $componentDataResolver)
+    public function setComponentDataResolver(ComponentDataResolverInterface $componentDataResolver): void
     {
         $this->componentDataResolver = $componentDataResolver;
     }
@@ -122,13 +105,12 @@ abstract class AbstractActionManager implements ActionManagerInterface
     /**
      * Gets the component data resolver.
      *
-     * @return ComponentDataResolverInterface
      *
      * @throws \Exception When no component data resolver has been set
      */
-    public function getComponentDataResolver()
+    public function getComponentDataResolver(): ?ComponentDataResolverInterface
     {
-        if (empty($this->componentDataResolver) || !$this->componentDataResolver instanceof ComponentDataResolverInterface ) {
+        if (empty($this->componentDataResolver) || !$this->componentDataResolver instanceof ComponentDataResolverInterface) {
             throw new \Exception('Component data resolver not set');
         }
 

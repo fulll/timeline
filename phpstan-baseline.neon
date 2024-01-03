@@ -1,0 +1,1491 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method object\\:\\:setData\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setIdentifier\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setModel\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setVerb\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^If condition is always false\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Left side of && is always true\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:addComponent\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:create\\(\\) has parameter \\$components with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:create\\(\\) should return Spy\\\\Timeline\\\\Model\\\\ActionInterface but returns object\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:getComponentFromResolvedComponentData\\(\\) should return Spy\\\\Timeline\\\\Model\\\\ComponentInterface but returns object\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:resolveModelAndIdentifier\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:setComponentDataResolver\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:setDeployer\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$action ActionInterface\\)\\: Unexpected token \"\\$action\", expected type at offset 9$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^PHPDoc tag @var has invalid value \\(\\$component ComponentInterface\\)\\: Unexpected token \"\\$component\", expected type at offset 9$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$action of method Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:addComponent\\(\\) expects Spy\\\\Timeline\\\\Model\\\\ActionInterface, object given\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Parameter \\#2 \\$component of method Spy\\\\Timeline\\\\Model\\\\ActionInterface\\:\\:addComponent\\(\\) expects Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|string, bool\\|float\\|int\\|Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|string given\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\AbstractActionManager\\:\\:\\$componentDataResolver \\(Spy\\\\Timeline\\\\ResolveComponent\\\\ComponentDataResolverInterface\\) in empty\\(\\) is not falsy\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Result of \\|\\| is always false\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and Spy\\\\Timeline\\\\Model\\\\ComponentInterface will always evaluate to false\\.$#"
+			count: 1
+			path: src/Driver/AbstractActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:create\\(\\) has parameter \\$components with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:createComponent\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:findComponents\\(\\) has parameter \\$hashes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:findOrCreateComponent\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:flushComponents\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:getSubjectActions\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\ActionManagerInterface\\:\\:updateAction\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/ActionManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:equals\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:equals\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:fromArray\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:fromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:in\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:in\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:like\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:like\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:lt\\(\\) has invalid return type Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\return\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:lt\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\return but returns Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:lte\\(\\) has invalid return type Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\return\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:lte\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\return but returns Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notEquals\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notEquals\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notIn\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notIn\\(\\) has parameter \\$values with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notLike\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:notLike\\(\\) has parameter \\$value with no type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Asserter\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Asserter.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/CriteriaInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:addCriteria\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:fromArray\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:fromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:getAvailableTypes\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:setCriterias\\(\\) has parameter \\$criterias with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\Operator\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/Criteria/Operator.php
+
+		-
+			message: "#^Call to an undefined method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\:\\:field\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Call to an undefined method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\:\\:setType\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Cannot call method toArray\\(\\) on array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:addFieldLocation\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:createNewOperator\\(\\) has parameter \\$args with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:field\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:fromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:getAvailableFields\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:getCriterias\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\|null but returns array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:getSubjects\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:\\$criterias \\(array\\) does not accept Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:\\$criterias type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:\\$fieldLocation type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:\\$sort type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder\\:\\:\\$subjects type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilder.php
+
+		-
+			message: "#^Call to an undefined method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface\\:\\:fromArray\\(\\)\\.$#"
+			count: 2
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:__construct\\(\\) has parameter \\$classes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createAsserter\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface but returns object\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createAsserterFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createOperator\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\Criteria\\\\CriteriaInterface but returns object\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createOperatorFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createQueryBuilder\\(\\) should return Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilder but returns object\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:createQueryBuilderFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\QueryBuilder\\\\QueryBuilderFactory\\:\\:\\$classes type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/QueryBuilder/QueryBuilderFactory.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:createFromHash\\(\\)\\.$#"
+			count: 2
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:hlen\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:hset\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zCard\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:createComponent\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:findComponents\\(\\) has parameter \\$concatIdents with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:findOrCreateComponent\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:flushComponents\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:getSubjectActions\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:getSubjectActions\\(\\) should return array\\<Spy\\\\Timeline\\\\Model\\\\ActionInterface\\>\\|Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\PagerInterface but returns Traversable\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\ActionManager\\:\\:updateAction\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/ActionManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:hmget\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/AbstractPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\AbstractPager\\:\\:findActionsForIds\\(\\) has parameter \\$ids with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/AbstractPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\AbstractPager\\:\\:findActionsForIds\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/AbstractPager.php
+
+		-
+			message: "#^Access to an undefined property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\KnpSubscriber\\:\\:\\$actionManager\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/KnpSubscriber.php
+
+		-
+			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Event\\\\ItemsEvent\\:\\:stopPropagation\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/KnpSubscriber.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zCard\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/KnpSubscriber.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zRevRange\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/KnpSubscriber.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\KnpSubscriber\\:\\:items\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/KnpSubscriber.php
+
+		-
+			message: "#^Access to an undefined property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:\\$items\\.$#"
+			count: 6
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Access to an undefined property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:\\$lastPage\\.$#"
+			count: 2
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Access to an undefined property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:\\$nbResults\\.$#"
+			count: 2
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zCard\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zRevRange\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Class Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager implements generic interface ArrayAccess but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Class Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager implements generic interface IteratorAggregate but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:getIterator\\(\\) return type with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:paginate\\(\\) has parameter \\$options with no type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:setItems\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\Pager\\:\\:setItems\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/Pager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\Pager\\\\PagerToken\\:\\:\\$key has no type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/Pager/PagerToken.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zRevRange\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/QueryExecutor.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\QueryExecutor\\:\\:fetch\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Driver/Redis/QueryExecutor.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\QueryExecutor\\:\\:fetch\\(\\) should return Traversable but returns array\\.$#"
+			count: 1
+			path: src/Driver/Redis/QueryExecutor.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:pipeline\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:zCard\\(\\)\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Call to method execute\\(\\) on an unknown class Predis\\\\Pipeline\\\\Pipeline\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Call to method execute\\(\\) on an unknown class Predis\\\\Pipeline\\\\PipelineContext\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Class Predis\\\\Pipeline\\\\Pipeline not found\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Class Predis\\\\Pipeline\\\\PipelineContext not found\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:countKeys\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:createAndPersist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:flush\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:getTimeline\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:getTimeline\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:remove\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:removeAll\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$subject of method Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:getSubjectRedisKey\\(\\) expects Spy\\\\Timeline\\\\Model\\\\ComponentInterface, Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|null given\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Driver\\\\Redis\\\\TimelineManager\\:\\:\\$persistedDatas type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: src/Driver/Redis/TimelineManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:countKeys\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:createAndPersist\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:flush\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:getTimeline\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:getTimeline\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:remove\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Driver\\\\TimelineManagerInterface\\:\\:removeAll\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Driver/TimelineManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\AbstractFilter\\:\\:setPriority\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/AbstractFilter.php
+
+		-
+			message: "#^Call to an undefined method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\PagerInterface\\:\\:getIterator\\(\\)\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:getData\\(\\)\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:getHash\\(\\)\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:addComponents\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:addComponents\\(\\) has parameter \\$components with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:addLocator\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:filter\\(\\) should return array but returns array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:\\$components type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:\\$entries type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\:\\:\\$locators type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Entry\\:\\:build\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Entry.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Entry\\:\\:buildComponent\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Entry.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Entry\\:\\:getComponents\\(\\) has invalid return type Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Reference\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Entry.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Entry\\:\\:\\$components type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Entry.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Entry\\:\\:\\$key \\(int\\) does not accept string\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Entry.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DataHydrator\\\\Locator\\\\LocatorInterface\\:\\:locate\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/DataHydrator/Locator/LocatorInterface.php
+
+		-
+			message: "#^Cannot access offset int\\|string on array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DuplicateKey\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DuplicateKey\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DuplicateKey\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DuplicateKey\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\DuplicateKey\\:\\:filter\\(\\) should return array but returns array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/DuplicateKey.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterInterface\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Filter/FilterInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterInterface\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterInterface\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\|Traversable\\.$#"
+			count: 1
+			path: src/Filter/FilterInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterInterface\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterInterface.php
+
+		-
+			message: "#^Instanceof between \\*NEVER\\* and Traversable will always evaluate to false\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManager\\:\\:add\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManager\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManager\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManager\\:\\:sortFilters\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: src/Filter/FilterManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManagerInterface\\:\\:filter\\(\\) has parameter \\$collection with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterManagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Filter\\\\FilterManagerInterface\\:\\:filter\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Filter/FilterManagerInterface.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setComponent\\(\\)\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setText\\(\\)\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setType\\(\\)\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:addTimeline\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:getComponent\\(\\) should return Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|null but return statement is missing\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:getComponent\\(\\) should return Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|null but returns Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|string\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:getTimelines\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:getValidStatus\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:isValidStatus\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:isValidStatus\\(\\) has parameter \\$status with no type specified\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:setIsDuplicated\\(\\) should return Spy\\\\Timeline\\\\Model\\\\ActionInterface but return statement is missing\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Parameter \\#1 \\$actionComponent of method Spy\\\\Timeline\\\\Model\\\\Action\\:\\:addActionComponent\\(\\) expects Spy\\\\Timeline\\\\Model\\\\ActionComponentInterface, object given\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Action\\:\\:\\$actionComponents type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Action\\:\\:\\$timelines type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Action.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\ActionComponent\\:\\:\\$id \\(int\\) does not accept string\\.$#"
+			count: 1
+			path: src/Model/ActionComponent.php
+
+		-
+			message: "#^Elseif branch is unreachable because previous condition is always true\\.$#"
+			count: 1
+			path: src/Model/Component.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Component\\:\\:buildHash\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Component.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Component\\:\\:getIdentifier\\(\\) should return string but returns array\\.$#"
+			count: 1
+			path: src/Model/Component.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Component\\:\\:\\$identifier \\(array\\) does not accept string\\.$#"
+			count: 1
+			path: src/Model/Component.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Component\\:\\:\\$identifier type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Model/Component.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Timeline\\:\\:getId\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Timeline.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Timeline\\:\\:setId\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/Timeline.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\Timeline\\:\\:setId\\(\\) has parameter \\$id with no type specified\\.$#"
+			count: 1
+			path: src/Model/Timeline.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Timeline\\:\\:\\$action \\(Spy\\\\Timeline\\\\Model\\\\Action\\) does not accept Spy\\\\Timeline\\\\Model\\\\ActionInterface\\.$#"
+			count: 1
+			path: src/Model/Timeline.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Model\\\\Timeline\\:\\:\\$subject \\(Spy\\\\Timeline\\\\Model\\\\Component\\) does not accept Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\.$#"
+			count: 1
+			path: src/Model/Timeline.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\TimelineInterface\\:\\:getId\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/TimelineInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\TimelineInterface\\:\\:setId\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Model/TimelineInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Model\\\\TimelineInterface\\:\\:setId\\(\\) has parameter \\$id with no type specified\\.$#"
+			count: 1
+			path: src/Model/TimelineInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\NotifierInterface\\:\\:notify\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Notification/NotifierInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:getUnreadNotifications\\(\\) has parameter \\$options with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:getUnreadNotifications\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:markAllAsRead\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:markAsReadAction\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:markAsReadActions\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:markAsReadActions\\(\\) has parameter \\$actions with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Notification\\\\Unread\\\\UnreadNotificationManager\\:\\:notify\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Notification/Unread/UnreadNotificationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$className of static method Doctrine\\\\Common\\\\Util\\\\ClassUtils\\:\\:getRealClass\\(\\) expects class\\-string\\<object\\>, string given\\.$#"
+			count: 1
+			path: src/ResolveComponent/BasicComponentDataResolver.php
+
+		-
+			message: "#^Unable to resolve the template type T in call to method static method Doctrine\\\\Common\\\\Util\\\\ClassUtils\\:\\:getRealClass\\(\\)$#"
+			count: 1
+			path: src/ResolveComponent/BasicComponentDataResolver.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\TestHelper\\\\User\\:\\:__construct\\(\\) has parameter \\$id with no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/TestHelper/User.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResolveComponent\\\\TestHelper\\\\User\\:\\:\\$id has no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/TestHelper/User.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:__construct\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:getIdentifier\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:guardValidModelAndIdentifier\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:guardValidModelAndIdentifier\\(\\) has parameter \\$identifier with no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:guardValidModelAndIdentifier\\(\\) has parameter \\$model with no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:\\$identifier has no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolveComponentModelIdentifier\\:\\:\\$model has no type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolveComponentModelIdentifier.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolvedComponentData\\:\\:buildHash\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolvedComponentData\\:\\:getIdentifier\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolvedComponentData\\:\\:guardValidIdentifier\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolvedComponentData\\:\\:guardValidIdentifier\\(\\) has parameter \\$identifier with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResolveComponent\\\\ValueObject\\\\ResolvedComponentData\\:\\:guardValidModel\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and array\\|string will always evaluate to false\\.$#"
+			count: 1
+			path: src/ResolveComponent/ValueObject/ResolvedComponentData.php
+
+		-
+			message: "#^Class Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\AbstractPager implements generic interface ArrayAccess but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/ResultBuilder/Pager/AbstractPager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\AbstractPager\\:\\:\\$pager type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/AbstractPager.php
+
+		-
+			message: "#^Call to an undefined method Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\:\\:getPaginationData\\(\\)\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Cannot call method setItems\\(\\) on array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Class Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager implements generic interface IteratorAggregate but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:getIterator\\(\\) return type with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:getIterator\\(\\) should return ArrayIterator but returns array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:setItems\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:setItems\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\AbstractPager\\:\\:\\$pager \\(array\\) does not accept Knp\\\\Component\\\\Pager\\\\Pagination\\\\PaginationInterface\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:\\$data type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\KnpPager\\:\\:\\$paginator \\(Knp\\\\Component\\\\Pager\\\\Paginator\\) does not accept Knp\\\\Component\\\\Pager\\\\Paginator\\|null\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/KnpPager.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\PagerInterface\\:\\:setItems\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/PagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\Pager\\\\PagerInterface\\:\\:setItems\\(\\) has parameter \\$items with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/ResultBuilder/Pager/PagerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\QueryExecutor\\\\QueryExecutorInterface\\:\\:fetch\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/ResultBuilder/QueryExecutor/QueryExecutorInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\ResultBuilder\\:\\:fetchResults\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/ResultBuilder/ResultBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\ResultBuilder\\:\\:fetchResults\\(\\) should return Traversable but returns array\\.$#"
+			count: 1
+			path: src/ResultBuilder/ResultBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\ResultBuilder\\:\\:setPager\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ResultBuilder/ResultBuilder.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: src/ResultBuilder/ResultBuilder.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ResultBuilder\\\\ResultBuilderInterface\\:\\:fetchResults\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/ResultBuilder/ResultBuilderInterface.php
+
+		-
+			message: "#^Access to offset 'action_manager' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'action_manager\\.class' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'class\\.action' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'class\\.action…' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'class\\.component' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'class\\.component…' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'pager' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'pager\\.class' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'query_executor' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'query_executor\\.class' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'redis\\.client' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'redis\\.pipeline' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'redis\\.prefix' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'timeline_manager' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Access to offset 'timeline_manager…' on an unknown class Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setComponentDataResolver\\(\\)\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setDelivery\\(\\)\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setDeployer\\(\\)\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Call to an undefined method object\\:\\:setPager\\(\\)\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Call to method share\\(\\) on an unknown class Pimple\\.$#"
+			count: 4
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ServiceLocator\\:\\:addRedisDriver\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ServiceLocator\\:\\:addRedisDriver\\(\\) has parameter \\$client with no type specified\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ServiceLocator\\:\\:buildContainer\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\ServiceLocator\\:\\:getContainer\\(\\) has invalid return type Pimple\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\ServiceLocator\\:\\:\\$container has unknown class Pimple as its type\\.$#"
+			count: 1
+			path: src/ServiceLocator.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:addNotifier\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:addSpread\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:deploy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:getSpreads\\(\\) return type with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:getSpreads\\(\\) should return ArrayIterator but returns array\\<Spy\\\\Timeline\\\\Spread\\\\SpreadInterface\\>\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:setDelivery\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Parameter \\#1 \\$subject of class Spy\\\\Timeline\\\\Spread\\\\Entry\\\\Entry constructor expects Spy\\\\Timeline\\\\Model\\\\ComponentInterface, Spy\\\\Timeline\\\\Model\\\\ComponentInterface\\|null given\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Spread\\\\Deployer\\:\\:\\$spreads \\(array\\<Spy\\\\Timeline\\\\Spread\\\\SpreadInterface\\>\\) does not accept ArrayIterator\\<\\*NEVER\\*, \\*NEVER\\*\\>\\.$#"
+			count: 1
+			path: src/Spread/Deployer.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\DeployerInterface\\:\\:addNotifier\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/DeployerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\DeployerInterface\\:\\:addSpread\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/DeployerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\DeployerInterface\\:\\:deploy\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/DeployerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\DeployerInterface\\:\\:getSpreads\\(\\) return type with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Spread/DeployerInterface.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\DeployerInterface\\:\\:setDelivery\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/DeployerInterface.php
+
+		-
+			message: "#^Class Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection implements generic interface IteratorAggregate but does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:add\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:clear\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:getIterator\\(\\) return type with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:setActionManager\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:setDuplicateOnGlobal\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Negated boolean expression is always false\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Property Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryCollection\\:\\:\\$coll with generic class ArrayIterator does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Strict comparison using \\=\\=\\= between null and Spy\\\\Timeline\\\\Model\\\\ComponentInterface will always evaluate to false\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryCollection.php
+
+		-
+			message: "#^Elseif branch is unreachable because previous condition is always true\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryUnaware.php
+
+		-
+			message: "#^Method Spy\\\\Timeline\\\\Spread\\\\Entry\\\\EntryUnaware\\:\\:setSubject\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Spread/Entry/EntryUnaware.php

@@ -7,14 +7,11 @@ namespace Spy\Timeline\ResolveComponent\TestHelper;
  */
 class User
 {
-    protected $id;
-
     /**
      * @param $id
      */
-    public function __construct($id)
+    public function __construct(protected $id)
     {
-        $this->id = $id;
     }
 
     /**

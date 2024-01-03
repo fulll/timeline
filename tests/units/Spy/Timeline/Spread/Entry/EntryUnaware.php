@@ -9,16 +9,16 @@ use Spy\Timeline\Spread\Entry\EntryUnaware as TestedModel;
 
 class EntryUnaware extends test
 {
-    public function testContruct()
+    public function testContruct(): void
     {
-        $this->exception(function () {
-                $entry = new TestedModel('model', new \stdClass());
-            })
+        $this->exception(static function (): void {
+            new TestedModel('model', new \stdClass());
+        })
             ->isInstanceOf('\InvalidArgumentException')
             ->hasMessage('subjectId has to be a scalar or an array')
             // array
-            ->if($entry = new TestedModel('model', array(1, 2)))
-            ->array($entry->getSubjectId())->isEqualTo(array(1, 2))
+            ->if($entry = new TestedModel('model', [1, 2]))
+            ->array($entry->getSubjectId())->isEqualTo([1, 2])
             // scalar
             ->if($entry = new TestedModel('model', 'string'))
             ->string($entry->getSubjectId())->isEqualTo('string')
@@ -29,16 +29,16 @@ class EntryUnaware extends test
         ;
     }
 
-    public function testGetIdent()
+    public function testGetIdent(): void
     {
         $this->if($entry = new TestedModel('model', 1))
             ->string($entry->getIdent())->isEqualTo('model#s:1:"1";')
-            ->if($entry = new TestedModel('model', array(1, 2, 3)))
+            ->if($entry = new TestedModel('model', [1, 2, 3]))
             ->string($entry->getIdent())->isEqualTo('model#a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}');
         ;
     }
 
-    public function testIsStrict()
+    public function testIsStrict(): void
     {
         $this->if($entry = new TestedModel('model', 1))
             ->boolean($entry->isStrict())->isFalse()

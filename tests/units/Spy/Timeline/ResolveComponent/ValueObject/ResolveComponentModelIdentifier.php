@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
+use Spy\Timeline\Exception\ResolveComponentDataException;
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -10,27 +11,27 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier as
 
 class ResolveComponentModelIdentifier extends test
 {
-    public function testStringModelEmptyIdentifierThrowsException()
+    public function testStringModelEmptyIdentifierThrowsException(): void
     {
-        $this->exception(function () {
+        $this->exception(static function (): void {
             new TestedModel('user');
-            })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+        })
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)')
         ;
     }
 
-    public function testEmptyModelThrowsException()
+    public function testEmptyModelThrowsException(): void
     {
-        $this->exception(function () {
+        $this->exception(static function (): void {
             new TestedModel('');
         })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('Model has to be an object or (a scalar + an identifier in 2nd argument)')
         ;
     }
 
-    public function testObjectModelWithIdentifierGivenReturnsNullAsIdentifier()
+    public function testObjectModelWithIdentifierGivenReturnsNullAsIdentifier(): void
     {
         $model = new \stdClass();
 
@@ -39,7 +40,7 @@ class ResolveComponentModelIdentifier extends test
         ;
     }
 
-    public function testObjectWithNoIdentifierReturnsObjectAndNullAsIdentifier()
+    public function testObjectWithNoIdentifierReturnsObjectAndNullAsIdentifier(): void
     {
         $model = new User('5');
 
@@ -49,22 +50,22 @@ class ResolveComponentModelIdentifier extends test
         ;
     }
 
-    public function testArrayIdentifier()
+    public function testArrayIdentifier(): void
     {
-        $identifier = array('foo' => 5, 'bar' => 'baz');
+        $identifier = ['foo' => 5, 'bar' => 'baz'];
         $this->when($object = new TestedModel('user', $identifier))
             ->variable($object->getIdentifier())->isIdenticalTo($identifier)
         ;
     }
 
-    public function testIdentifierCanBeIntegerZero()
+    public function testIdentifierCanBeIntegerZero(): void
     {
         $this->when($object = new TestedModel('user', 0))
             ->integer($object->getIdentifier())->isZero()
         ;
     }
 
-    public function testIdentifierCanBeStringZero()
+    public function testIdentifierCanBeStringZero(): void
     {
         $this->when($object = new TestedModel('user', '0'))
             ->string($object->getIdentifier())->isEqualTo('0')

@@ -8,36 +8,21 @@ use Spy\Timeline\Model\ActionInterface;
 
 class Entry
 {
-    /**
-     * @var ActionInterface
-     */
-    private $action;
-
-    /**
-     * @var array
-     */
-    private $components = array();
-
-    /**
-     * @var int
-     */
-    protected $key;
+    private array $components = [];
 
     /**
      * @param ActionInterface $action action
      * @param string          $key    key
      */
-    public function __construct(ActionInterface $action, $key)
+    public function __construct(private readonly ActionInterface $action, protected $key)
     {
-        $this->action = $action;
-        $this->key    = $key;
     }
 
     /**
      * Build references (subject, directComplement, indirectComplement)
      * of timeline action
      */
-    public function build()
+    public function build(): void
     {
         foreach ($this->action->getActionComponents() as $actionComponent) {
             if (!$actionComponent->isText()) {
@@ -59,7 +44,7 @@ class Entry
         $data      = $component->getData();
 
         if (null !== $data
-            && (!$data instanceof Proxy || $data->__isInitialized())
+            && (!$data instanceof Proxy || $data->isInitialized())
         ) {
             return;
         }
@@ -70,7 +55,7 @@ class Entry
     /**
      * @return array<*,Reference>
      */
-    public function getComponents()
+    public function getComponents(): array
     {
         return $this->components;
     }

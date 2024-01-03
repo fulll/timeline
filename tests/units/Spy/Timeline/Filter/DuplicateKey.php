@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\Filter;
 
+use Spy\Timeline\Model\ActionInterface;
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,13 +10,13 @@ use Spy\Timeline\Filter\DuplicateKey as TestedModel;
 
 class DuplicateKey extends test
 {
-    public function testFilterNoDuplicateKey()
+    public function testFilterNoDuplicateKey(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action2 = new \Mock\ActionInterface())
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(2)
                 ->isIdenticalTo($coll)
@@ -28,15 +29,15 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterOneDuplicateKey()
+    public function testFilterOneDuplicateKey(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
             ->and($action2 = new \Mock\ActionInterface())
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(2)
                 ->isIdenticalTo($coll)
@@ -49,17 +50,17 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterTwoDuplicateKeyDifferent()
+    public function testFilterTwoDuplicateKeyDifferent(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
             ->and($action2 = new \Mock\ActionInterface())
             ->and($action2->getMockController()->hasDuplicateKey = true)
             ->and($action2->getMockController()->getDuplicateKey = '456')
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(2)
                 ->isIdenticalTo($coll)
@@ -72,20 +73,20 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterTwoDuplicateKeyNoPriority()
+    public function testFilterTwoDuplicateKeyNoPriority(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
             ->and($action2 = new \Mock\ActionInterface())
             ->and($action2->getMockController()->hasDuplicateKey = true)
             ->and($action2->getMockController()->getDuplicateKey = '123')
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(1)
-                ->isIdenticalTo(array($action1))
+                ->isIdenticalTo([$action1])
             ->mock($action1)
                 ->call('setIsDuplicated')
                 ->once()
@@ -95,10 +96,10 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterTwoDuplicateKeyPriorityEquals()
+    public function testFilterTwoDuplicateKeyPriorityEquals(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
@@ -107,10 +108,10 @@ class DuplicateKey extends test
             ->and($action2->getMockController()->hasDuplicateKey = true)
             ->and($action2->getMockController()->getDuplicateKey = '123')
             ->and($action2->getMockController()->getDuplicatePriority = 10)
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(1)
-                ->isIdenticalTo(array($action1))
+                ->isIdenticalTo([$action1])
             ->mock($action1)
                 ->call('setIsDuplicated')
                 ->once()
@@ -120,10 +121,10 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterTwoDuplicateKeyPriorityFirst()
+    public function testFilterTwoDuplicateKeyPriorityFirst(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
@@ -132,10 +133,10 @@ class DuplicateKey extends test
             ->and($action2->getMockController()->hasDuplicateKey = true)
             ->and($action2->getMockController()->getDuplicateKey = '123')
             ->and($action2->getMockController()->getDuplicatePriority = 10)
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(1)
-                ->isIdenticalTo(array($action1))
+                ->isIdenticalTo([$action1])
             ->mock($action1)
                 ->call('setIsDuplicated')
                 ->once()
@@ -145,10 +146,10 @@ class DuplicateKey extends test
         ;
     }
 
-    public function testFilterTwoDuplicateKeyPrioritySecond()
+    public function testFilterTwoDuplicateKeyPrioritySecond(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action1->getMockController()->hasDuplicateKey = true)
             ->and($action1->getMockController()->getDuplicateKey = '123')
@@ -157,10 +158,10 @@ class DuplicateKey extends test
             ->and($action2->getMockController()->hasDuplicateKey = true)
             ->and($action2->getMockController()->getDuplicateKey = '123')
             ->and($action2->getMockController()->getDuplicatePriority = 20)
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))
                 ->hasSize(1)
-                ->isIdenticalTo(array(1 => $action2))
+                ->isIdenticalTo([1 => $action2])
             ->mock($action1)
                 ->call('setIsDuplicated')
                 ->never()

@@ -14,10 +14,8 @@ class ResolvedComponentData
 
     /**
      * The resolved model string.
-     *
-     * @var string
      */
-    private $model;
+    private readonly string $model;
 
     /**
      * The resolved identifier.
@@ -27,44 +25,32 @@ class ResolvedComponentData
     private $identifier;
 
     /**
-     * The resolved data.
-     *
-     * @var null|object
-     */
-    private $data;
-
-    /**
      * @param string      $model      The resolved model
      * @param mixed       $identifier The resolved identifier
      * @param object|null $data       The resolved data
      */
-    public function __construct($model, $identifier, $data = null)
+    public function __construct(string $model, mixed $identifier, private readonly ?object $data = null)
     {
         $this->guardValidModel($model);
         $this->guardValidIdentifier($identifier);
 
         $this->model = $model;
         $this->identifier = $identifier;
-        $this->data = $data;
         $this->buildHash();
     }
 
     /**
      * Gets the resolved model.
-     *
-     * @return string
      */
-    public function getModel()
+    public function getModel(): string
     {
         return $this->model;
     }
 
     /**
      * Gets the resolved data.
-     *
-     * @return null|object
      */
-    public function getData()
+    public function getData(): ?object
     {
         return $this->data;
     }
@@ -73,10 +59,8 @@ class ResolvedComponentData
      * Gets the resolved identifier.
      *
      * Because of serializing problems we always return scalars as strings
-     *
-     * @return array|string
      */
-    public function getIdentifier()
+    public function getIdentifier(): array|string
     {
         if (is_scalar($this->identifier)) {
             return (string) $this->identifier;
@@ -94,15 +78,13 @@ class ResolvedComponentData
      *
      * @throws ResolveComponentDataException When the model is not a string.
      */
-    private function guardValidModel($model)
+    private function guardValidModel(string $model)
     {
         if (empty($model)) {
             throw new ResolveComponentDataException('The resolved model can not be empty');
         }
 
-        if (!is_string($model)) {
-            throw new ResolveComponentDataException('The resolved model has to be a string');
-        }
+        throw new ResolveComponentDataException('The resolved model has to be a string');
     }
 
     /**
@@ -114,14 +96,13 @@ class ResolvedComponentData
      *
      * @throws ResolveComponentDataException
      */
-    private function guardValidIdentifier($identifier)
+    private function guardValidIdentifier(string|array $identifier)
     {
         if (null === $identifier || '' === $identifier) {
             throw new ResolveComponentDataException('No resolved identifier given');
         }
 
-        if (!is_scalar($identifier) && !is_array($identifier)) {
-            throw new ResolveComponentDataException('Identifier has to be a scalar or an array');
+        if (is_scalar($identifier)) {
         }
     }
 }

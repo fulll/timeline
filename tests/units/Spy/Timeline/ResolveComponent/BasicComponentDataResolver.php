@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\ResolveComponent;
 
+use Spy\Timeline\Exception\ResolveComponentDataException;
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -11,34 +12,34 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolveComponentModelIdentifier;
 
 class BasicComponentDataResolver extends test
 {
-    public function testWithObjectThatHasGetId()
+    public function testWithObjectThatHasGetId(): void
     {
         $user = new User(1);
         $resolve = new ResolveComponentModelIdentifier($user);
 
         $this->if($object = new TestedModel())
             ->string($object->resolveComponentData($resolve)->getIdentifier())->isEqualTo('1')
-            ->string($object->resolveComponentData($resolve)->getModel())->isEqualTo('Spy\Timeline\ResolveComponent\TestHelper\User')
+            ->string($object->resolveComponentData($resolve)->getModel())->isEqualTo(User::class)
             ->object($object->resolveComponentData($resolve)->getData())->isEqualTo($user)
         ;
     }
 
-    public function testWithObjectWhichHasNoGetId()
+    public function testWithObjectWhichHasNoGetId(): void
     {
         $model = new \stdClass();
         $resolve = new ResolveComponentModelIdentifier($model);
         $this->if($object = new TestedModel())
-            ->exception(function () use ($object, $resolve) {
+            ->exception(static function () use ($object, $resolve): void {
                 $object->resolveComponentData($resolve);
             })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('Model must have a getId method')
         ;
     }
 
-    public function testWithStringAndIdentifierGiven()
+    public function testWithStringAndIdentifierGiven(): void
     {
-        $identifier = array('foo' => 'bar', 'baz' => 5);
+        $identifier = ['foo' => 'bar', 'baz' => 5];
         $resolve = new ResolveComponentModelIdentifier('user', $identifier);
 
         $this->if($object = new TestedModel())
@@ -48,7 +49,7 @@ class BasicComponentDataResolver extends test
         ;
     }
 
-    public function testWhenObjectGivenIdentifierGetsIgnored()
+    public function testWhenObjectGivenIdentifierGetsIgnored(): void
     {
         $user = new User(1);
         $identifier = 5;

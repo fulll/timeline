@@ -9,23 +9,23 @@ use Spy\Timeline\Model\Component as TestedModel;
 
 class Component extends test
 {
-    public function testBuildHash()
+    public function testBuildHash(): void
     {
         $this->if($component = new TestedModel())
             ->and($component->setModel('chuck'))
             ->and($component->setIdentifier('norris'))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
             ->string($component->getHash())->isEqualTo('chuck#s:6:"norris";')
-            ->and($component->setIdentifier(array('norris', 'testa')))
+            ->and($component->setIdentifier(['norris', 'testa']))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
             ->string($component->getHash())->isEqualTo('chuck#a:2:{i:0;s:6:"norris";i:1;s:5:"testa";}')
         ;
     }
 
-    public function testCreateFromHash()
+    public function testCreateFromHash(): void
     {
         $this->if($component = new TestedModel())
-            ->exception(function () use ($component) {
+            ->exception(static function () use ($component): void {
                 $component->createFromHash('invalidhash');
             })
             ->isInstanceOf('\InvalidArgumentException')
@@ -42,11 +42,11 @@ class Component extends test
             // composite
             ->when($component->createFromHash('model#a:2:{i:0;s:5:"chuck";i:1;s:5:"testa";}'))
             ->string($component->getModel())->isEqualTo('model')
-            ->array($component->getIdentifier())->isEqualTo(array('chuck', 'testa'))
+            ->array($component->getIdentifier())->isEqualTo(['chuck', 'testa'])
         ;
     }
 
-    public function testSetModel()
+    public function testSetModel(): void
     {
         $this->if($component = new TestedModel())
             ->variable($component->getHash())->isNull()
@@ -60,7 +60,7 @@ class Component extends test
         ;
     }
 
-    public function testSetIdentifier()
+    public function testSetIdentifier(): void
     {
         $this->if($component = new TestedModel())
             ->variable($component->getHash())->isNull()

@@ -4,13 +4,10 @@ namespace Spy\Timeline\Driver\Redis\Pager;
 
 class PagerToken
 {
-    public $key;
-
     /**
      * @param string $key key
      */
-    public function __construct($key)
+    public function __construct(public $key)
     {
-        $this->key = $key;
     }
 }

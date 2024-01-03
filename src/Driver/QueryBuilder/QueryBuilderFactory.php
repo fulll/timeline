@@ -13,19 +13,15 @@ class QueryBuilderFactory
     /**
      * @var array
      */
-    protected $classes;
+    protected $classes = [];
 
     /**
      * @param array $classes classes could contain query_builder, operator, asserter/
      */
-    public function __construct(array $classes = array())
+    public function __construct(array $classes = [])
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefaults(array(
-            'asserter'      => '\Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter',
-            'operator'      => '\Spy\Timeline\Driver\QueryBuilder\Criteria\Operator',
-            'query_builder' => '\Spy\Timeline\Driver\QueryBuilder\QueryBuilder',
-        ));
+        $resolver->setDefaults(['asserter'      => '\\' . Asserter::class, 'operator'      => '\\' . Operator::class, 'query_builder' => '\\' . QueryBuilder::class]);
 
         $this->classes = $resolver->resolve($classes);
     }
@@ -40,7 +36,7 @@ class QueryBuilderFactory
 
     /**
      * @param array                  $data          data
-     * @param ActionManagerInterface $actionManager actionManager
+     * @param ActionManagerInterface|null $actionManager actionManager
      *
      * @return QueryBuilder
      */

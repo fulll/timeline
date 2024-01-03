@@ -2,6 +2,9 @@
 
 namespace tests\units\Spy\Timeline\Driver\QueryBuilder\Criteria;
 
+use Spy\Timeline\Driver\QueryBuilder\Criteria\CriteriaInterface;
+use Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter;
+use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
 require_once __DIR__.'/../../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,53 +12,40 @@ use Spy\Timeline\Driver\QueryBuilder\Criteria\Operator as TestedModel;
 
 class Operator extends test
 {
-    public function testSetType()
+    public function testSetType(): void
     {
         $this->if($model = new TestedModel())
-            ->exception(function () use ($model) {
+            ->exception(static function () use ($model): void {
                 $model->setType('unknown');
             })
             ->isInstanceOf('\InvalidArgumentException')
             ->hasMessage('Type "unknown" not supported')
             ->object($model->setType('AND'))
-            ->isInstanceOf('Spy\Timeline\Driver\QueryBuilder\Criteria\Operator')
+            ->isInstanceOf(TestedModel::class)
             ->string($model->getType())
             ->isEqualTo('AND')
         ;
     }
 
-    public function testGetAvailableTypes()
+    public function testToArray(): void
     {
         $this->if($model = new TestedModel())
-            ->array($model->getAvailableTypes())
-            ->isNotEmpty();
-    }
-
-    public function testToArray()
-    {
-        $this->if($model = new TestedModel())
-            ->and($this->mockClass('Spy\Timeline\Driver\QueryBuilder\Criteria\CriteriaInterface', '\Mock'))
+            ->and($this->mockClass(CriteriaInterface::class, '\Mock'))
             ->and($criteria = new \Mock\CriteriaInterface())
             ->and($criteria->getMockController()->toArray = 'CRITERIA_TO_ARRAY')
             ->and($model->addCriteria($criteria))
             ->and($model->setType('AND'))
             ->array($model->toArray())
-            ->isEqualTo(array(
-                'type' => 'operator',
-                'value' => 'AND',
-                'criterias' => array(
-                    'CRITERIA_TO_ARRAY'
-                ),
-            ))
+            ->isEqualTo(['type' => 'operator', 'value' => 'AND', 'criterias' => ['CRITERIA_TO_ARRAY']])
         ;
     }
 
-    public function testFromArray()
+    public function testFromArray(): void
     {
         $this->if($model = new TestedModel())
-            ->and($this->mockClass('Spy\Timeline\Driver\QueryBuilder\Criteria\Operator', '\Mock'))
-            ->and($this->mockClass('Spy\Timeline\Driver\QueryBuilder\Criteria\Asserter', '\Mock'))
-            ->and($this->mockClass('Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory', '\Mock'))
+            ->and($this->mockClass(TestedModel::class, '\Mock'))
+            ->and($this->mockClass(Asserter::class, '\Mock'))
+            ->and($this->mockClass(QueryBuilderFactory::class, '\Mock'))
             ->and($operator = new \Mock\Operator())
             ->and($asserter = new \Mock\Asserter())
             // init factory
@@ -68,24 +58,10 @@ class Operator extends test
             ->and($resultExpected->addCriteria($operator))
             ->and($resultExpected->setType('AND'))
             // let's go.
-            ->object($model->fromArray(array(
-                'type'      => 'operator',
-                'value'     => 'AND',
-                'criterias' => array(
-                    array('type' => 'expr', /*...*/),
-                    array('type' => 'operator', /*...*/),
-                ),
-            ), $factory))
+            ->object($model->fromArray(['type'      => 'operator', 'value'     => 'AND', 'criterias' => [['type' => 'expr'], ['type' => 'operator']]], $factory))
             ->isEqualTo($resultExpected)
             // to be sure
-            ->object($model->fromArray(array(
-                'type'      => 'operator',
-                'value'     => 'AND',
-                'criterias' => array(
-                    array('type' => 'operator', /*...*/),
-                    array('type' => 'expr', /*...*/),
-                ),
-            ), $factory))
+            ->object($model->fromArray(['type'      => 'operator', 'value'     => 'AND', 'criterias' => [['type' => 'operator'], ['type' => 'expr']]], $factory))
             ->isNotEqualTo($resultExpected)
         ;
     }

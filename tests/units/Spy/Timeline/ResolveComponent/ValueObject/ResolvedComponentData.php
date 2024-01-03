@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\ResolveComponent\ValueObject;
 
+use Spy\Timeline\Exception\ResolveComponentDataException;
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,61 +10,61 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData as TestedMod
 
 class ResolvedComponentData extends test
 {
-    public function testEmptyModelThrowsException()
+    public function testEmptyModelThrowsException(): void
     {
-        $this->exception(function () {
+        $this->exception(static function (): void {
             new TestedModel('', 2);
-            })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+        })
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('The resolved model can not be empty')
         ;
     }
 
-    public function testArrayModelThrowsException()
+    public function testArrayModelThrowsException(): void
     {
-        $this->exception(function () {
-                new TestedModel(array('foo'), 2);
-            })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+        $this->exception(static function (): void {
+            new TestedModel(['foo'], 2);
+        })
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('The resolved model has to be a string')
         ;
     }
 
-    public function testObjectModelThrowsException()
+    public function testObjectModelThrowsException(): void
     {
-        $this->exception(function () {
-                new TestedModel(new \stdClass(), 2);
-            })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+        $this->exception(static function (): void {
+            new TestedModel(new \stdClass(), 2);
+        })
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('The resolved model has to be a string')
         ;
     }
 
-    public function testEmptyIdentifierThrowsException()
+    public function testEmptyIdentifierThrowsException(): void
     {
-        $invalidData = array(null, '');
+        $invalidData = [null, ''];
 
         foreach ($invalidData as $invalid) {
-            $this->exception(function () use ($invalid) {
-                    new TestedModel('user', $invalid);
-                })
-                ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+            $this->exception(static function () use ($invalid): void {
+                new TestedModel('user', $invalid);
+            })
+                ->isInstanceOf(ResolveComponentDataException::class)
                 ->hasMessage('No resolved identifier given')
             ;
         }
     }
 
-    public function testObjectAsIdentifierThrowsException()
+    public function testObjectAsIdentifierThrowsException(): void
     {
-        $this->exception(function () {
-                new TestedModel('user', new \stdClass());
-            })
-            ->isInstanceOf('Spy\Timeline\Exception\ResolveComponentDataException')
+        $this->exception(static function (): void {
+            new TestedModel('user', new \stdClass());
+        })
+            ->isInstanceOf(ResolveComponentDataException::class)
             ->hasMessage('Identifier has to be a scalar or an array')
         ;
     }
 
-    public function testIntegerIdentifierReturnsAsString()
+    public function testIntegerIdentifierReturnsAsString(): void
     {
         $this->if($action = new TestedModel('user', 1))
             ->string($action->getModel())->isEqualTo('user')
@@ -71,10 +72,10 @@ class ResolvedComponentData extends test
         ;
     }
 
-    public function testValidModelAndIdentifiersWhereIdentifierArray()
+    public function testValidModelAndIdentifiersWhereIdentifierArray(): void
     {
         $stringModel = 'foo/bar/baz';
-        $arrayIdentifier = array('foo' => 'bar', 'bar' => 5);
+        $arrayIdentifier = ['foo' => 'bar', 'bar' => 5];
 
         $this->if($action = new TestedModel($stringModel, $arrayIdentifier))
             ->string($action->getModel())->isEqualTo($stringModel)
@@ -82,7 +83,7 @@ class ResolvedComponentData extends test
         ;
     }
 
-    public function testSettingDataWorks()
+    public function testSettingDataWorks(): void
     {
         $object = new \stdClass();
         $object->title = 'foo';
@@ -92,14 +93,14 @@ class ResolvedComponentData extends test
         ;
     }
 
-    public function testNoDataSetReturnsNull()
+    public function testNoDataSetReturnsNull(): void
     {
         $this->if($action = new TestedModel('user', 1))
             ->variable($action->getData())->isNull()
         ;
     }
 
-    public function testIdentifierCanBeZero()
+    public function testIdentifierCanBeZero(): void
     {
         $this->if($action = new TestedModel('user', '0'))
             ->string($action->getIdentifier())->isEqualTo('0')

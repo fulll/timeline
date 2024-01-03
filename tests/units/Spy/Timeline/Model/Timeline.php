@@ -10,7 +10,7 @@ use Spy\Timeline\Model\TimelineInterface;
 
 class Timeline extends test
 {
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $this->if($object = new TestedModel())
             ->object($object->getCreatedAt())->isInstanceOf('\DateTime')

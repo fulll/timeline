@@ -46,8 +46,6 @@ interface ActionComponentInterface
     public function getText();
 
     /**
-     * @param ActionInterface $action
-     *
      * @return ActionComponent
      */
     public function setAction(ActionInterface $action);
@@ -58,8 +56,6 @@ interface ActionComponentInterface
     public function getAction();
 
     /**
-     * @param ComponentInterface $component
-     *
      * @return ActionComponent
      */
     public function setComponent(ComponentInterface $component);

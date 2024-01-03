@@ -29,10 +29,7 @@ class Timeline implements TimelineInterface
      */
     protected $action;
 
-    /**
-     * @var \DateTime
-     */
-    protected $createdAt;
+    protected \DateTime $createdAt;
 
     /**
      * Constructor
@@ -45,7 +42,7 @@ class Timeline implements TimelineInterface
     /**
      * {@inheritdoc}
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
 
@@ -63,7 +60,7 @@ class Timeline implements TimelineInterface
     /**
      * {@inheritdoc}
      */
-    public function setContext($context)
+    public function setContext(string $context)
     {
         $this->context = $context;
 
@@ -81,7 +78,7 @@ class Timeline implements TimelineInterface
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
 
@@ -109,7 +106,7 @@ class Timeline implements TimelineInterface
     /**
      * {@inheritdoc}
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): \DateTime
     {
         return $this->createdAt;
     }

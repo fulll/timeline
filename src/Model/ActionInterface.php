@@ -4,9 +4,22 @@ namespace Spy\Timeline\Model;
 
 interface ActionInterface
 {
-    const STATUS_PENDING   = 'pending';
-    const STATUS_PUBLISHED = 'published';
-    const STATUS_FROZEN    = 'frozen';
+    /**
+     * @var string
+     */
+    public const STATUS_PENDING   = 'pending';
+
+
+    /**
+     * @var string
+     */
+    public const STATUS_PUBLISHED = 'published';
+
+
+    /**
+     * @var string
+     */
+    public const STATUS_FROZEN    = 'frozen';
 
     /**
      * @param string                    $type                 type
@@ -15,7 +28,7 @@ interface ActionInterface
      *
      * @return ActionInterface
      */
-    public function addComponent($type, $component, $actionComponentClass);
+    public function addComponent($type, string|ComponentInterface $component, $actionComponentClass);
 
     /**
      * @param string $type type
@@ -73,7 +86,7 @@ interface ActionInterface
      *
      * @return ActionInterface
      */
-    public function setId($id);
+    public function setId(mixed $id);
 
     /**
      * @param string$verb verb

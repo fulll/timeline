@@ -12,7 +12,7 @@ trait HashTrait
     /**
      * {@inheritdoc}
      */
-    public function buildHash()
+    public function buildHash(): void
     {
         $this->hash = $this->getModel().'#'.serialize($this->getIdentifier());
     }

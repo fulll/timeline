@@ -9,7 +9,7 @@ use Spy\Timeline\Model\ActionComponent as TestedModel;
 
 class ActionComponent extends test
 {
-    public function testIsText()
+    public function testIsText(): void
     {
         $this->if($object = new TestedModel())
             ->boolean($object->isText())->isFalse()

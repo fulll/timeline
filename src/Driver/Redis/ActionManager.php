@@ -2,6 +2,8 @@
 
 namespace Spy\Timeline\Driver\Redis;
 
+use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
+use Spy\Timeline\Driver\Redis\Pager\PagerToken;
 use Spy\Timeline\Driver\AbstractActionManager;
 use Spy\Timeline\Driver\ActionManagerInterface;
 use Spy\Timeline\Model\ActionInterface;
@@ -12,42 +14,24 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActionManager extends AbstractActionManager implements ActionManagerInterface
 {
-    /**
-     * @var object
-     */
-    protected $client;
+    public $componentClass;
 
     /**
-     * @var ResultBuilderInterface
-     */
-    protected $resultBuilder;
-
-    /**
-     * @var string
-     */
-    protected $prefix;
-
-    /**
-     * @param object                 $client               client
      * @param ResultBuilderInterface $resultBuilder        resultBuilder
      * @param string                 $prefix               prefix
      * @param string                 $actionClass          actionClass
      * @param string                 $componentClass       componentClass
      * @param string                 $actionComponentClass actionComponentClass
      */
-    public function __construct($client, ResultBuilderInterface $resultBuilder, $prefix, $actionClass, $componentClass, $actionComponentClass)
+    public function __construct(protected object $client, protected ResultBuilderInterface $resultBuilder, protected string $prefix, string $actionClass, string $componentClass, string $actionComponentClass)
     {
-        $this->client = $client;
-        $this->prefix = $prefix;
-        $this->resultBuilder = $resultBuilder;
-
         parent::__construct($actionClass, $componentClass, $actionComponentClass);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function findActionsWithStatusWantedPublished($limit = 100)
+    public function findActionsWithStatusWantedPublished($limit = 100): never
     {
         throw new \Exception('Method '.__METHOD__.' is currently not supported by redis driver');
     }
@@ -69,19 +53,14 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     /**
      * {@inheritdoc}
      */
-    public function getSubjectActions(ComponentInterface $subject, array $options = array())
+    public function getSubjectActions(ComponentInterface $subject, array $options = []): array|PagerInterface
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefaults(array(
-            'page'         => 1,
-            'max_per_page' => 10,
-            'filter'       => true,
-            'paginate'     => false,
-        ));
+        $resolver->setDefaults(['page'         => 1, 'max_per_page' => 10, 'filter'       => true, 'paginate'     => false]);
 
         $options = $resolver->resolve($options);
 
-        $token   = new Pager\PagerToken($this->getSubjectRedisKey($subject));
+        $token   = new PagerToken($this->getSubjectRedisKey($subject));
 
         return $this->resultBuilder->fetchResults($token, $options['page'], $options['max_per_page'], $options['filter'], $options['paginate']);
     }
@@ -89,7 +68,7 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     /**
      * {@inheritdoc}
      */
-    public function updateAction(ActionInterface $action)
+    public function updateAction(ActionInterface $action): void
     {
         $action->setId($this->getNextId());
 
@@ -120,16 +99,17 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
     /**
      * {@inheritdoc}
      */
-    public function flushComponents()
+    public function flushComponents(): void
     {
     }
 
     /**
      * {@inheritdoc}
+     * @return mixed[]
      */
-    public function findComponents(array $concatIdents)
+    public function findComponents(array $concatIdents): array
     {
-        $components = array();
+        $components = [];
 
         foreach ($concatIdents as $concatIdent) {
             $component    = new $this->componentClass();
@@ -150,28 +130,20 @@ class ActionManager extends AbstractActionManager implements ActionManagerInterf
         return $component;
     }
 
-    /**
-     * @return integer|double
-     */
-    protected function getNextId()
+    protected function getNextId(): int|float
     {
         return ($this->client->hlen($this->getActionKey()) + 1);
     }
 
-    /**
-     * @return string
-     */
-    protected function getActionKey()
+    protected function getActionKey(): string
     {
         return sprintf('%s:action', $this->prefix);
     }
 
     /**
      * @param ComponentInterface $subject subject
-     *
-     * @return string
      */
-    protected function getSubjectRedisKey(ComponentInterface $subject)
+    protected function getSubjectRedisKey(ComponentInterface $subject): string
     {
         return sprintf('%s:%s', $this->prefix, $subject->getHash());
     }

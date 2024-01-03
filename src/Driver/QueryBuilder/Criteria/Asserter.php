@@ -4,141 +4,84 @@ namespace Spy\Timeline\Driver\QueryBuilder\Criteria;
 
 class Asserter implements CriteriaInterface
 {
-    const ASSERTER_EQUAL               = '=';
-    const ASSERTER_NOT_EQUAL           = '!=';
-    const ASSERTER_IN                  = 'IN';
-    const ASSERTER_NOT_IN              = 'NOT IN';
-    const ASSERTER_LIKE                = 'LIKE';
-    const ASSERTER_NOT_LIKE            = 'NOT LIKE';
-    const ASSERTER_LOWER_THAN          = '<';
-    const ASSERTER_LOWER_THAN_EQUAL    = '<=';
-    const ASSERTER_GREATER_THAN       = '>';
-    const ASSERTER_GREATER_THAN_EQUAL = '>=';
+    final public const ASSERTER_EQUAL = '=';
+    final public const ASSERTER_NOT_EQUAL = '!=';
+    final public const ASSERTER_IN = 'IN';
+    final public const ASSERTER_NOT_IN = 'NOT IN';
+    final public const ASSERTER_LIKE = 'LIKE';
+    final public const ASSERTER_NOT_LIKE = 'NOT LIKE';
+    final public const ASSERTER_LOWER_THAN = '<';
+    final public const ASSERTER_LOWER_THAN_EQUAL = '<=';
+    final public const ASSERTER_GREATER_THAN = '>';
+    final public const ASSERTER_GREATER_THAN_EQUAL = '>=';
 
-    /**
-     * @var string
-     */
-    protected $field;
+    protected string $field;
+    protected string $operator;
+    protected mixed $value;
 
-    /**
-     * @var string
-     */
-    protected $operator;
-
-    /**
-     * @var mixed
-     */
-    protected $value;
-
-    /**
-     * @param string $field field
-     *
-     * @return Asserter
-     */
-    public function field($field)
+    public function field(string $field): static
     {
         $this->field = $field;
 
         return $this;
     }
 
-    /**
-     * Allow to transform value easily for each assertions.
-     *
-     * @param mixed $value value
-     *
-     * @return mixed
-     */
-    public function transform($value)
+    public function transform(mixed $value): mixed
     {
         return $value;
     }
 
-    public function equals($value)
+    public function equals($value): static
     {
         return $this->create(self::ASSERTER_EQUAL, $this->transform($value));
     }
 
-    public function notEquals($value)
+    public function notEquals(mixed $value): static
     {
         return $this->create(self::ASSERTER_NOT_EQUAL, $this->transform($value));
     }
 
-    public function in(array $values)
+    public function in(array $values): static
     {
         return $this->create(self::ASSERTER_IN, $this->transform($values));
     }
 
-    public function notIn(array $values)
+    public function notIn(array $values): static
     {
         return $this->create(self::ASSERTER_NOT_IN, $this->transform($values));
     }
 
-    public function like($value)
+    public function like(mixed $value): static
     {
         return $this->create(self::ASSERTER_LIKE, $this->transform($value));
     }
 
-    public function notLike($value)
+    public function notLike(mixed $value): static
     {
         return $this->create(self::ASSERTER_NOT_LIKE, $this->transform($value));
     }
 
-    /**
-     * lower than
-     *
-     * @param mixed $value value
-     *
-     * @return return DateTimeAsserter
-     */
-    public function lt($value)
+    public function lt(mixed $value): static
     {
         return $this->create(self::ASSERTER_LOWER_THAN, $this->transform($value));
     }
 
-    /**
-     * lower than equal
-     *
-     * @param mixed $value value
-     *
-     * @return return DateTimeAsserter
-     */
-    public function lte($value)
+    public function lte(mixed $value): static
     {
         return $this->create(self::ASSERTER_LOWER_THAN_EQUAL, $this->transform($value));
     }
 
-    /**
-     * greater than
-     *
-     * @param mixed $value value
-     *
-     * @return Asserter
-     */
-    public function gt($value)
+    public function gt(mixed $value): static
     {
         return $this->create(self::ASSERTER_GREATER_THAN, $this->transform($value));
     }
 
-    /**
-     * greater than equal
-     *
-     * @param mixed $value value
-     *
-     * @return Asserter
-     */
-    public function gte($value)
+    public function gte(mixed $value): static
     {
         return $this->create(self::ASSERTER_GREATER_THAN_EQUAL, $this->transform($value));
     }
 
-    /**
-     * @param string $operator operator
-     * @param mixed  $value    value
-     *
-     * @return Asserter
-     */
-    public function create($operator, $value)
+    public function create(string $operator, mixed $value): static
     {
         $this->operator = $operator;
         $this->value    = $value;
@@ -147,52 +90,33 @@ class Asserter implements CriteriaInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @return array{type: string, value: array}
      */
-    public function toArray()
+    public function toArray(): array
     {
-        return array(
-            'type' => 'expr',
-            'value' => array(
-                $this->field,
-                $this->operator,
-                $this->value
-            ),
-        );
+        return ['type' => 'expr', 'value' => [$this->field, $this->operator, $this->value]];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function fromArray(array $data)
+    public function fromArray(array $data): static
     {
-        list ($field, $operator, $value) = $data['value'];
+        [$field, $operator, $value] = $data['value'];
 
         return $this->field($field)
             ->create($operator, $value)
         ;
     }
 
-    /**
-     * @return string
-     */
-    public function getField()
+    public function getField(): string
     {
         return $this->field;
     }
 
-    /**
-     * @return string
-     */
-    public function getOperator()
+    public function getOperator(): string
     {
         return $this->operator;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->value;
     }

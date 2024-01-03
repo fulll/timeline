@@ -11,5 +11,5 @@ interface QueryExecutorInterface
      *
      * @return \Traversable
      */
-    public function fetch($query, $page = 1, $maxPerPage = 10);
+    public function fetch(mixed $query, $page = 1, $maxPerPage = 10);
 }

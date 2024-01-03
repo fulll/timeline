@@ -2,6 +2,12 @@
 
 namespace Spy\Timeline\Tests\Units\Driver\Redis;
 
+use Spy\Timeline\ResultBuilder\ResultBuilderInterface;
+use Spy\Timeline\ResolveComponent\ComponentDataResolverInterface;
+use mock\StdClass;
+use Spy\Timeline\Model\Action;
+use Spy\Timeline\Model\Component;
+use Spy\Timeline\Model\ActionComponent;
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -11,26 +17,24 @@ use Spy\Timeline\ResolveComponent\ValueObject\ResolvedComponentData;
 
 class ActionManager extends test
 {
-    public function testFindOrCreateComponent()
+    public function testFindOrCreateComponent(): void
     {
         $model = 'user';
-        $identifier = array('foo' => 'bar', 'baz' => 'baz');
+        $identifier = ['foo' => 'bar', 'baz' => 'baz'];
         $resolve = new ResolveComponentModelIdentifier($model, $identifier);
 
         $this
             //mocks
-            ->if($this->mockClass('Spy\Timeline\ResultBuilder\ResultBuilderInterface', '\Mock'))
-            ->and($this->mockClass('Spy\Timeline\ResolveComponent\ComponentDataResolverInterface', '\Mock'))
+            ->if($this->mockClass(ResultBuilderInterface::class, '\Mock'))
+            ->and($this->mockClass(ComponentDataResolverInterface::class, '\Mock'))
 
-            ->and($redis = new \mock\StdClass())
+            ->and($redis = new StdClass())
             ->and($resultBuilder = new \mock\ResultBuilderInterface())
             ->and($componentDataResolver = new \mock\ComponentDataResolverInterface())
-            ->and($actionClass = 'Spy\Timeline\Model\Action')
-            ->and($componentClass = 'Spy\Timeline\Model\Component')
-            ->and($actionComponentClass = 'Spy\Timeline\Model\ActionComponent')
-            ->and($this->calling($componentDataResolver)->resolveComponentData = function () use ($model, $identifier) {
-                return new ResolvedComponentData($model, $identifier);
-            })
+            ->and($actionClass = Action::class)
+            ->and($componentClass = Component::class)
+            ->and($actionComponentClass = ActionComponent::class)
+            ->and($this->calling($componentDataResolver)->resolveComponentData = static fn (): ResolvedComponentData => new ResolvedComponentData($model, $identifier))
             ->and($object = new TestedModel($redis, $resultBuilder, 'foo', $actionClass, $componentClass, $actionComponentClass))
 
             ->and($object->setComponentDataResolver($componentDataResolver))

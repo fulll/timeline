@@ -32,7 +32,7 @@ class ActionComponent implements ActionComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function isText()
+    public function isText(): bool
     {
         return null !== $this->text;
     }
@@ -58,7 +58,7 @@ class ActionComponent implements ActionComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function setType($type)
+    public function setType(string $type)
     {
         $this->type = $type;
 
@@ -76,7 +76,7 @@ class ActionComponent implements ActionComponentInterface
     /**
      * {@inheritdoc}
      */
-    public function setText($text)
+    public function setText(string $text)
     {
         $this->text = $text;
 

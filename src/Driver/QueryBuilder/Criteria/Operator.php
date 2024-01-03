@@ -6,41 +6,21 @@ use Spy\Timeline\Driver\QueryBuilder\QueryBuilderFactory;
 
 class Operator implements CriteriaInterface
 {
-    const TYPE_AND = 'AND';
-    const TYPE_OR  = 'OR';
-
-    /**
-     * @var string
-     */
-    protected $type;
+    protected OperatorType $type;
 
     /**
      * @var CriteriaInterface[]
      */
-    protected $criterias = array();
+    protected array $criterias = [];
 
-    /**
-     * @param string $type type
-     *
-     * @return Operator
-     */
-    public function setType($type)
+    public function setType(OperatorType $type): static
     {
-        if (!in_array($type, $this->getAvailableTypes())) {
-            throw new \InvalidArgumentException(sprintf('Type "%s" not supported', $type));
-        }
-
         $this->type = $type;
 
         return $this;
     }
 
-    /**
-     * @param array $criterias criterias
-     *
-     * @return Operator
-     */
-    public function setCriterias(array $criterias)
+    public function setCriterias(array $criterias): static
     {
         foreach ($criterias as $criteria) {
             $this->addCriteria($criteria);
@@ -49,70 +29,43 @@ class Operator implements CriteriaInterface
         return $this;
     }
 
-    /**
-     * @param CriteriaInterface $criteria criteria
-     */
-    public function addCriteria(CriteriaInterface $criteria)
+    public function addCriteria(CriteriaInterface $criteria): void
     {
         $this->criterias[] = $criteria;
     }
 
-    /**
-     * @return array
-     */
-    public function getAvailableTypes()
-    {
-        return array(
-            self::TYPE_AND,
-            self::TYPE_OR,
-        );
-    }
-
-    /**
-     * @return string
-     */
-    public function getType()
+    public function getType(): OperatorType
     {
         return $this->type;
     }
 
-    /**
-     * @return CriteriaInterface[]
-     */
-    public function getCriterias()
+    public function getCriterias(): array
     {
         return $this->criterias;
     }
 
     /**
-     * {@inheritdoc}
+     * @return array{type: string, value: string, criterias: mixed[][]}
      */
-    public function toArray()
+    public function toArray(): array
     {
-        $criterias = array_map(function ($criteria) {
-            return $criteria->toArray();
-        }, $this->getCriterias());
+        $criterias = array_map(static fn ($criteria): array => $criteria->toArray(), $this->getCriterias());
 
-        return array(
-            'type'      => 'operator',
-            'value'     => $this->getType(),
-            'criterias' => $criterias,
-        );
+        return ['type' => 'operator', 'value' => $this->getType(), 'criterias' => $criterias];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function fromArray(array $data, QueryBuilderFactory $factory)
+    public function fromArray(array $data, QueryBuilderFactory $factory): static
     {
-        $criterias = array_map(function ($v) use ($factory) {
-            if ('operator' == $v['type']) {
+        $criterias = array_map(static function ($v) use ($factory): CriteriaInterface {
+            if ('operator' === $v['type']) {
                 return $factory->createOperatorFromArray($v);
-            } elseif ('expr' == $v['type']) {
-                return $factory->createAsserterFromArray($v);
-            } else {
-                throw new \InvalidArgumentException(sprintf('Type "%s" is not supported, use expr or operator.', $v['type']));
             }
+
+            if ('expr' === $v['type']) {
+                return $factory->createAsserterFromArray($v);
+            }
+
+            throw new \InvalidArgumentException(sprintf('Type "%s" is not supported, use expr or operator.', $v['type']));
         }, $data['criterias']);
 
         $this->setType($data['value']);

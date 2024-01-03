@@ -6,15 +6,7 @@ use Spy\Timeline\Model\ComponentInterface;
 
 class EntryUnaware implements EntryInterface
 {
-    /**
-     * @var string
-     */
-    protected $subjectModel;
-
-    /**
-     * @var string
-     */
-    protected $subjectId;
+    protected string $subjectId;
 
     /**
      * @var ComponentInterface
@@ -22,20 +14,13 @@ class EntryUnaware implements EntryInterface
     protected $subject;
 
     /**
-     * @var boolean
-     */
-    protected $strict;
-
-    /**
      * @param string  $subjectModel subjectModel
      * @param string  $subjectId    subjectId
      * @param boolean $strict       If strict (component fetch is mandatory,
      *                              if nothing is returned, exception will be thrown)
      */
-    public function __construct($subjectModel, $subjectId, $strict = false)
+    public function __construct(protected string $subjectModel, $subjectId, protected bool $strict = false)
     {
-        $this->subjectModel = $subjectModel;
-
         if (is_scalar($subjectId)) {
             $subjectId = (string) $subjectId;
         } elseif (!is_array($subjectId)) {
@@ -43,7 +28,6 @@ class EntryUnaware implements EntryInterface
         }
 
         $this->subjectId    = $subjectId;
-        $this->strict       = $strict;
     }
 
     /**
@@ -65,31 +49,22 @@ class EntryUnaware implements EntryInterface
     /**
      * @param ComponentInterface $subject subject
      */
-    public function setSubject(ComponentInterface $subject)
+    public function setSubject(ComponentInterface $subject): void
     {
         $this->subject = $subject;
     }
 
-    /**
-     * @return string
-     */
-    public function getSubjectModel()
+    public function getSubjectModel(): string
     {
         return $this->subjectModel;
     }
 
-    /**
-     * @return string
-     */
-    public function getSubjectId()
+    public function getSubjectId(): string
     {
         return $this->subjectId;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isStrict()
+    public function isStrict(): bool
     {
         return $this->strict;
     }

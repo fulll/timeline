@@ -19,7 +19,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     /**
      * @var array
      */
-    protected $data;
+    protected $data = [];
 
     /**
      * @param Paginator|null $paginator paginator
@@ -32,14 +32,14 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     /**
      * {@inheritdoc}
      */
-    public function paginate($target, $page = 1, $limit = 10)
+    public function paginate($target, int $page = 1, $limit = 10)
     {
         if (null === $this->paginator) {
-            throw new \LogicException(sprintf('Knp\Component\Pager\Paginator not injected in constructor of %s', __CLASS__));
+            throw new \LogicException(sprintf('Knp\Component\Pager\Paginator not injected in constructor of %s', self::class));
         }
 
         $this->page  = $page;
-        $this->pager = $this->paginator->paginate($target, $page, $limit, array('distinct' => true));
+        $this->pager = $this->paginator->paginate($target, $page, $limit, ['distinct' => true]);
         $this->data  = $this->pager->getPaginationData();
 
         return $this;
@@ -93,15 +93,12 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->pager;
     }
 
-    /**
-     * @return integer
-     */
-    public function count()
+    public function count(): int
     {
         return $this->data['currentItemCount'];
     }

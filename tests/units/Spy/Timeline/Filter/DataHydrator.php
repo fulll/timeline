@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\Filter;
 
+use Spy\Timeline\Model\ActionInterface;
 require_once __DIR__.'/../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,18 +10,18 @@ use Spy\Timeline\Filter\DataHydrator as TestedModel;
 
 class DataHydrator extends test
 {
-    public function testFilterEmptyLocators()
+    public function testFilterEmptyLocators(): void
     {
         $this->if($filter = new TestedModel())
-            ->and($this->mockClass('\Spy\Timeline\Model\ActionInterface', '\Mock'))
+            ->and($this->mockClass('\\' . ActionInterface::class, '\Mock'))
             ->and($action1 = new \Mock\ActionInterface())
             ->and($action2 = new \Mock\ActionInterface())
-            ->and($coll = array($action1, $action2))
+            ->and($coll = [$action1, $action2])
             ->array($filter->filter($coll))->isIdenticalTo($coll)
         ;
     }
 
-    public function testWithLocators()
+    public function testWithLocators(): void
     {
         $this->if($this->mockClass('\Spy\Timeline\Filter\DataHydrator', '\Mock'))
             ->and($this->mockClass('\Spy\Timeline\Filter\DataHydrator\Locator\LocatorInterface', '\Mock'))

@@ -9,10 +9,7 @@ abstract class AbstractFilter
      */
     protected $priority = 255;
 
-    /**
-     * @param mixed $priority
-     */
-    public function setPriority($priority)
+    public function setPriority(mixed $priority): void
     {
         $this->priority = $priority;
     }

@@ -2,6 +2,7 @@
 
 namespace tests\units\Spy\Timeline\Spread\Entry;
 
+use Spy\Timeline\Model\ComponentInterface;
 require_once __DIR__.'/../../../../../../vendor/autoload.php';
 
 use atoum\atoum\test;
@@ -9,9 +10,9 @@ use Spy\Timeline\Spread\Entry\Entry as TestedModel;
 
 class Entry extends test
 {
-    public function testGetIdent()
+    public function testGetIdent(): void
     {
-        $this->if($this->mockClass('\Spy\Timeline\Model\ComponentInterface', '\Mock'))
+        $this->if($this->mockClass('\\' . ComponentInterface::class, '\Mock'))
             ->and($component = new \Mock\ComponentInterface())
             ->and($component->getMockController()->getHash = 'myhash')
             ->and($entry = new TestedModel($component))

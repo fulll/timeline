@@ -30,7 +30,7 @@ interface ActionManagerInterface
      * @return ActionInterface[]|PagerInterface When option paginate is true this will return a PagerInterface,
      *                                          else this will return an ActionInterface[].
      */
-    public function getSubjectActions(ComponentInterface $subject, array $options = array());
+    public function getSubjectActions(ComponentInterface $subject, array $options = []): array|PagerInterface;
 
     /**
      * Saves an action.
@@ -48,7 +48,7 @@ interface ActionManagerInterface
      *
      * @return ActionInterface
      */
-    public function create($subject, $verb, array $components = array());
+    public function create($subject, $verb, array $components = []);
 
     /**
      * Find a component or create it.
