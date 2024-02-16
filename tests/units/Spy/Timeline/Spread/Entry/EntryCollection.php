@@ -60,10 +60,6 @@ class EntryCollection extends test
         ;
     }
 
-    public function testLoadUnawareEntries()
-    {
-    }
-
     public function testClear()
     {
         $this->if($collection = new TestedModel())

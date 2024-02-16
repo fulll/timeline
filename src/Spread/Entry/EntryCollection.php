@@ -45,10 +45,7 @@ class EntryCollection implements \IteratorAggregate
         $this->actionManager = $actionManager;
     }
 
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->coll;
     }
