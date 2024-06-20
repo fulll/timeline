@@ -93,7 +93,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     /**
      * @return \ArrayIterator
      */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->pager;
     }
@@ -101,7 +101,7 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
     /**
      * @return integer
      */
-    public function count()
+    public function count(): int
     {
         return $this->data['currentItemCount'];
     }

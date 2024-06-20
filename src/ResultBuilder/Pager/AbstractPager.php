@@ -7,12 +7,12 @@ abstract class AbstractPager implements \ArrayAccess
     /**
      * @var array
      */
-    protected $pager;
+    protected array $pager;
 
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return array_key_exists($offset, $this->pager);
     }
@@ -20,7 +20,7 @@ abstract class AbstractPager implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->pager[$offset];
     }
@@ -28,7 +28,7 @@ abstract class AbstractPager implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (null === $offset) {
             $this->pager[] = $value;
@@ -40,7 +40,7 @@ abstract class AbstractPager implements \ArrayAccess
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         unset($this->pager[$offset]);
     }
