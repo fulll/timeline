@@ -10,14 +10,14 @@
         "homepage": "https://github.com/stephpy/timeline/contributors"
     }],
     "require": {
-        "php": ">=7.4",
+        "php": ">=8.0",
         "symfony/options-resolver": "*",
         "doctrine/common": "~2.2|~3.0"
     },
     "require-dev": {
         "atoum/atoum": "~4.0",
         "pimple/pimple": "*",
-        "knplabs/knp-components": "1.*",
+        "knplabs/knp-components": "4.*",
         "symfony/event-dispatcher": "*"
     },
     "suggest": {

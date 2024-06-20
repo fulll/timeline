@@ -2,37 +2,19 @@
 
 namespace Spy\Timeline\ResultBuilder\Pager;
 
-use Knp\Component\Pager\Paginator;
+use Knp\Component\Pager\PaginatorInterface;
 
 class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable
 {
-    /**
-     * @var Paginator
-     */
-    protected $paginator;
+    protected int $page;
+    protected array $data;
 
-    /**
-     * @var integer
-     */
-    protected $page;
-
-    /**
-     * @var array
-     */
-    protected $data;
-
-    /**
-     * @param Paginator|null $paginator paginator
-     */
-    public function __construct(Paginator $paginator = null)
-    {
-        $this->paginator = $paginator;
+    public function __construct(
+        protected ?PaginatorInterface $paginator = null
+    ) {
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function paginate($target, $page = 1, $limit = 10)
+    public function paginate(mixed $target, int $page = 1, int $limit = 10): static
     {
         if (null === $this->paginator) {
             throw new \LogicException(sprintf('Knp\Component\Pager\Paginator not injected in constructor of %s', __CLASS__));
@@ -45,43 +27,27 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getPage()
+    public function getPage(): int
     {
         return $this->page;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLastPage()
+    public function getLastPage(): int
     {
         return $this->data['last'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function haveToPaginate()
+    public function haveToPaginate(): bool
     {
         return $this->getLastPage() > 1;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getNbResults()
+    public function getNbResults(): int
     {
         return $this->data['totalCount'];
     }
 
-    /**
-     * @param  array      $items items
-     * @throws \Exception
-     */
-    public function setItems(array $items)
+    public function setItems(array $items): void
     {
         if (!$this->pager) {
             throw new \Exception('Paginate before set items');
@@ -90,18 +56,12 @@ class KnpPager extends AbstractPager implements PagerInterface, \IteratorAggrega
         $this->pager->setItems($items);
     }
 
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return $this->pager;
     }
 
-    /**
-     * @return integer
-     */
-    public function count()
+    public function count(): int
     {
         return $this->data['currentItemCount'];
     }

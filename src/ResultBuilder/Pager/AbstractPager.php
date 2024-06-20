@@ -2,46 +2,29 @@
 
 namespace Spy\Timeline\ResultBuilder\Pager;
 
+use Knp\Component\Pager\Pagination\AbstractPagination;
+
 abstract class AbstractPager implements \ArrayAccess
 {
-    /**
-     * @var array
-     */
-    protected $pager;
+    protected ?AbstractPagination $pager = null;
 
-    /**
-     * {@inheritdoc}
-     */
     public function offsetExists($offset): bool
     {
-        return array_key_exists($offset, $this->pager);
+        return $this->pager->offsetExists($offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
-        return $this->pager[$offset];
+        return $this->pager->offsetGet($offset);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
-        if (null === $offset) {
-            $this->pager[] = $value;
-        } else {
-            $this->pager[$offset] = $value;
-        }
+        $this->pager->offsetSet($offset, $value);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
-        unset($this->pager[$offset]);
+        $this->pager->offsetUnset($offset);
     }
 }

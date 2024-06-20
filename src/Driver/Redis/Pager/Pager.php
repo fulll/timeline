@@ -6,15 +6,12 @@ use Spy\Timeline\ResultBuilder\Pager\PagerInterface;
 
 class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate, \Countable, \ArrayAccess
 {
-    /**
-     * @var integer
-     */
-    protected $page;
+    protected int $page;
+    private array $items;
+    private int $nbResults;
+    private int $lastPage;
 
-    /**
-     * {@inheritdoc}
-     */
-    public function paginate($target, $page = 1, $limit = 10, $options = array())
+    public function paginate($target, int $page = 1, int $limit = 10, array $options = []): static
     {
         if (!$target instanceof PagerToken) {
             throw new \Exception('Not supported, must give a PagerToken');
@@ -33,67 +30,42 @@ class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate,
         return $this;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getLastPage()
+    public function getLastPage(): int
     {
         return $this->lastPage;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getPage()
+    public function getPage(): int
     {
         return $this->page;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function haveToPaginate()
+    public function haveToPaginate(): bool
     {
         return $this->getLastPage() > 1;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getNbResults()
+    public function getNbResults(): int
     {
         return $this->nbResults;
     }
 
-    /**
-     * @param array $items items
-     */
-    public function setItems(array $items)
+    public function setItems(array $items): void
     {
         $this->items = $items;
     }
 
-    /**
-     * @return \ArrayIterator
-     */
-    public function getIterator()
+    public function getIterator(): \Traversable
     {
         return new \ArrayIterator($this->items);
     }
 
-    /**
-     * @return integer
-     */
-    public function count()
+    public function count(): int
     {
         return count($this->items);
     }
 
-    /**
-     * @param mixed $offset
-     * @param mixed $value
-     */
-    public function offsetSet($offset, $value)
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         if (is_null($offset)) {
             $this->items[] = $value;
@@ -102,29 +74,18 @@ class Pager extends AbstractPager implements PagerInterface, \IteratorAggregate,
         }
     }
 
-    /**
-     * @param  mixed   $offset
-     * @return boolean
-     */
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return isset($this->items[$offset]);
     }
 
-    /**
-     * @param mixed $offset
-     */
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         unset($this->items[$offset]);
     }
 
-    /**
-     * @param  mixed $offset
-     * @return mixed
-     */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
-        return isset($this->items[$offset]) ? $this->items[$offset] : null;
+        return $this->items[$offset] ?? null;
     }
 }

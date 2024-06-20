@@ -4,37 +4,15 @@ namespace Spy\Timeline\ResultBuilder\Pager;
 
 interface PagerInterface
 {
-    /**
-     * @param mixed $target target
-     * @param int   $page   page
-     * @param int   $limit  limit
-     *
-     * @return mixed
-     */
-    public function paginate($target, $page = 1, $limit = 10);
+    public function paginate(mixed $target, int $page = 1, int $limit = 10);
 
-    /**
-     * @return integer
-     */
-    public function getPage();
+    public function getPage(): int;
 
-    /**
-     * @return integer
-     */
-    public function getLastPage();
+    public function getLastPage(): int;
 
-    /**
-     * @return boolean
-     */
-    public function haveToPaginate();
+    public function haveToPaginate(): bool;
 
-    /**
-     * @return integer
-     */
-    public function getNbResults();
+    public function getNbResults(): int;
 
-    /**
-     * @param array $items items
-     */
-    public function setItems(array $items);
+    public function setItems(array $items): void;
 }

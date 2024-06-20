@@ -11,16 +11,13 @@ class KnpPager extends test
 {
     public function testPaginate()
     {
-        $this->if($this->mockClass('\Knp\Component\Pager\Paginator', '\Mock'))
-            ->and($this->mockClass('\Knp\Component\Pager\Pagination\SlidingPagination', '\Mock'))
-            ->and($this->mockClass('\Spy\Timeline\Filter\FilterManagerInterface', '\Mock'))
-            ->and($pagination = new \Mock\SlidingPagination())
+        $this->if($pagination = new \mock\Knp\Component\Pager\Pagination\AbstractPagination())
             ->and($pagination->getMockController()->getPaginationData = array(
                 'last' => 2,
                 'totalCount' => 17,
                 'currentItemCount' => 10,
             ))
-            ->and($paginator  = new \Mock\Paginator())
+            ->and($paginator = new \mock\Knp\Component\Pager\PaginatorInterface())
             ->and($paginator->getMockController()->paginate = $pagination)
             ->and($pager = new TestedModel($paginator))
             ->when($pagination = $pager->paginate('target', 1, 10))
