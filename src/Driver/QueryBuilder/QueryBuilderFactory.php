@@ -40,11 +40,11 @@ class QueryBuilderFactory
 
     /**
      * @param array                  $data          data
-     * @param ActionManagerInterface $actionManager actionManager
+     * @param ?ActionManagerInterface $actionManager actionManager
      *
      * @return QueryBuilder
      */
-    public function createQueryBuilderFromArray(array $data, ActionManagerInterface $actionManager = null)
+    public function createQueryBuilderFromArray(array $data, ?ActionManagerInterface $actionManager = null)
     {
         return $this->createQueryBuilder()
             ->fromArray($data, $actionManager)
