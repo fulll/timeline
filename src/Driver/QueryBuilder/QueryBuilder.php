@@ -54,9 +54,9 @@ class QueryBuilder
     );
 
     /**
-     * @param QueryBuilderFactory $factory factory
+     * @param ?QueryBuilderFactory $factory factory
      */
-    public function __construct(QueryBuilderFactory $factory = null)
+    public function __construct(?QueryBuilderFactory $factory = null)
     {
         if (null === $factory) {
             $factory = new QueryBuilderFactory();
@@ -229,11 +229,11 @@ class QueryBuilder
 
     /**
      * @param  array                  $data          data
-     * @param  ActionManagerInterface $actionManager actionManager
+     * @param  ?ActionManagerInterface $actionManager actionManager
      * @throws \Exception
      * @return $this
      */
-    public function fromArray(array $data, ActionManagerInterface $actionManager = null)
+    public function fromArray(array $data, ?ActionManagerInterface $actionManager = null)
     {
         if (isset($data['criterias']) && isset($data['criterias']['type'])) {
             $criterias = $data['criterias'];
