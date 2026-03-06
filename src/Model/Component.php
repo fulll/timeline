@@ -145,8 +145,7 @@ class Component implements ComponentInterface
         }
 
         $this->identifier = $identifier;
-        $identifierMigrated = is_array($identifier) ? reset($identifier) : $identifier;
-        $this->identifierMigrated = (string) $identifierMigrated;
+        $this->identifierMigrated = json_encode($identifier);
 
         if (null !== $this->getModel()) {
             $this->buildHash();
