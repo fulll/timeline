@@ -16,9 +16,15 @@ class Component extends test
             ->and($component->setIdentifier('norris'))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
             ->string($component->getHash())->isEqualTo('chuck#s:6:"norris";')
-            ->and($component->setIdentifier(array('norris', 'testa')))
+            ->string($component->getHashMigrated())->isEqualTo('chuck##"norris"')
+            ->and($component->setIdentifier(['norris', 'testa']))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
             ->string($component->getHash())->isEqualTo('chuck#a:2:{i:0;s:6:"norris";i:1;s:5:"testa";}')
+            ->string($component->getHashMigrated())->isEqualTo('chuck##["norris","testa"]')
+            ->and($component->setIdentifier(['norris' => 'foo', 'testa' => 1]))
+            ->when($component->buildHash()) // should be already called on setModel or setIdentifier
+            ->string($component->getHash())->isEqualTo('chuck#a:2:{s:6:"norris";s:3:"foo";s:5:"testa";i:1;}')
+            ->string($component->getHashMigrated())->isEqualTo('chuck##{"norris":"foo","testa":1}')
         ;
     }
 
@@ -39,10 +45,26 @@ class Component extends test
             ->when($component->createFromHash('model#s:5:"chuck";'))
             ->string($component->getModel())->isEqualTo('model')
             ->string($component->getIdentifier())->isEqualTo('chuck')
+            // ok
+            ->when($component->createFromHashMigrated('model##"chuck"'))
+            ->string($component->getModel())->isEqualTo('model')
+            ->string($component->getIdentifier())->isEqualTo('chuck')
             // composite
             ->when($component->createFromHash('model#a:2:{i:0;s:5:"chuck";i:1;s:5:"testa";}'))
             ->string($component->getModel())->isEqualTo('model')
             ->array($component->getIdentifier())->isEqualTo(array('chuck', 'testa'))
+            // composite
+            ->when($component->createFromHashMigrated('model##["chuck","testa"]'))
+            ->string($component->getModel())->isEqualTo('model')
+            ->array($component->getIdentifier())->isEqualTo(array('chuck', 'testa'))
+            // composite associative
+            ->when($component->createFromHash('chuck#a:2:{s:6:"norris";s:3:"foo";s:5:"testa";i:1;}'))
+            ->string($component->getModel())->isEqualTo('chuck')
+            ->array($component->getIdentifier())->isEqualTo(['norris' => 'foo', 'testa' => 1])
+            // composite associative
+            ->when($component->createFromHashMigrated('model##{"norris":"foo","testa":1}'))
+            ->string($component->getModel())->isEqualTo('model')
+            ->array($component->getIdentifier())->isEqualTo(['norris' => 'foo', 'testa' => 1])
         ;
     }
 

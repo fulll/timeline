@@ -21,6 +21,8 @@ class Component implements ComponentInterface
      */
     protected $identifier;
 
+    protected string|null $identifierMigrated = null;
+
     /**
      * Data defined on this component.
      *
@@ -46,6 +48,23 @@ class Component implements ComponentInterface
 
         return $this;
     }
+
+    public function createFromHashMigrated(string $hash): ComponentInterface
+    {
+        $data = explode('##', $hash);
+        if (count($data) == 1) {
+            throw new \InvalidArgumentException('Invalid hash, must be formatted {model}##{hash or identifier}');
+        }
+
+        $model      = array_shift($data);
+        $identifier = json_decode(array_shift($data), true);
+
+        $this->setModel($model);
+        $this->setIdentifier($identifier);
+
+        return $this;
+    }
+
 
     /**
      * serialization fields
@@ -126,6 +145,8 @@ class Component implements ComponentInterface
         }
 
         $this->identifier = $identifier;
+        $identifierMigrated = is_array($identifier) ? reset($identifier) : $identifier;
+        $this->identifierMigrated = (string) $identifierMigrated;
 
         if (null !== $this->getModel()) {
             $this->buildHash();
@@ -140,5 +161,10 @@ class Component implements ComponentInterface
     public function getIdentifier()
     {
         return $this->identifier;
+    }
+
+    public function getIdentifierMigrated(): string|null
+    {
+        return $this->identifierMigrated;
     }
 }

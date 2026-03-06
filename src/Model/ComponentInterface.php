@@ -11,12 +11,16 @@ interface ComponentInterface
      */
     public function getHash();
 
+    public function getHashMigrated(): string|null;
+
     /**
      * @param string $hash hash
      *
      * @return ComponentInterface
      */
     public function createFromHash($hash);
+
+    public function createFromHashMigrated(string $hash): ComponentInterface;
 
     /**
      * @param mixed $data data
@@ -65,4 +69,6 @@ interface ComponentInterface
      * @return string
      */
     public function getIdentifier();
+
+    public function getIdentifierMigrated(): string|null;
 }
