@@ -26,8 +26,9 @@ trait HashTrait
         } elseif (!is_array($identifier)) {
             throw new \InvalidArgumentException('Identifier must be a scalar or an array');
         }
+        $identifierMigrated = is_array($identifier) ? (string) reset($identifier) : $identifier;
 
-        $this->hashMigrated = $model.'##'.json_encode($identifier);
+        $this->hashMigrated = $model.'##'.$identifierMigrated;
     }
 
     /**
