@@ -57,7 +57,7 @@ class Component implements ComponentInterface
         }
 
         $model      = array_shift($data);
-        $identifier = json_decode(array_shift($data), true);
+        $identifier = array_shift($data);
 
         $this->setModel($model);
         $this->setIdentifier($identifier);
@@ -145,7 +145,9 @@ class Component implements ComponentInterface
         }
 
         $this->identifier = $identifier;
-        $this->identifierMigrated = json_encode($identifier);
+
+        $identifierMigrated = is_array($identifier) ? (string) reset($identifier) : $identifier;
+        $this->identifierMigrated = $identifierMigrated;
 
         if (null !== $this->getModel()) {
             $this->buildHash();
