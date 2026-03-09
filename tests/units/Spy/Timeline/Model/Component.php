@@ -15,16 +15,13 @@ class Component extends test
             ->and($component->setModel('chuck'))
             ->and($component->setIdentifier('norris'))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
-            ->string($component->getHash())->isEqualTo('chuck#s:6:"norris";')
-            ->string($component->getHashMigrated())->isEqualTo('chuck##norris')
+            ->string($component->getHash())->isEqualTo('chuck##norris')
             ->and($component->setIdentifier(['norris', 'testa']))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
-            ->string($component->getHash())->isEqualTo('chuck#a:2:{i:0;s:6:"norris";i:1;s:5:"testa";}')
-            ->string($component->getHashMigrated())->isEqualTo('chuck##norris')
+            ->string($component->getHash())->isEqualTo('chuck##norris')
             ->and($component->setIdentifier(['norris' => 'foo', 'testa' => 1]))
             ->when($component->buildHash()) // should be already called on setModel or setIdentifier
-            ->string($component->getHash())->isEqualTo('chuck#a:2:{s:6:"norris";s:3:"foo";s:5:"testa";i:1;}')
-            ->string($component->getHashMigrated())->isEqualTo('chuck##foo')
+            ->string($component->getHash())->isEqualTo('chuck##foo')
         ;
     }
 
@@ -35,28 +32,16 @@ class Component extends test
                 $component->createFromHash('invalidhash');
             })
             ->isInstanceOf('\InvalidArgumentException')
-            ->hasMessage('Invalid hash, must be formatted {model}#{hash or identifier}')
+            ->hasMessage('Invalid hash, must be formatted {model}##{hash or identifier}')
             // real hash
             // ->when(function () use ($component) {
             //     $component->createFromHash('model#id');
             // })
             // ->error()->exists()
             // ok
-            ->when($component->createFromHash('model#s:5:"chuck";'))
+            ->when($component->createFromHash('model##chuck'))
             ->string($component->getModel())->isEqualTo('model')
             ->string($component->getIdentifier())->isEqualTo('chuck')
-            // ok
-            ->when($component->createFromHashMigrated('model##chuck'))
-            ->string($component->getModel())->isEqualTo('model')
-            ->string($component->getIdentifier())->isEqualTo('chuck')
-            // composite
-            ->when($component->createFromHash('model#a:2:{i:0;s:5:"chuck";i:1;s:5:"testa";}'))
-            ->string($component->getModel())->isEqualTo('model')
-            ->array($component->getIdentifier())->isEqualTo(array('chuck', 'testa'))
-            // composite associative
-            ->when($component->createFromHash('chuck#a:2:{s:6:"norris";s:3:"foo";s:5:"testa";i:1;}'))
-            ->string($component->getModel())->isEqualTo('chuck')
-            ->array($component->getIdentifier())->isEqualTo(['norris' => 'foo', 'testa' => 1])
         ;
     }
 
@@ -70,8 +55,7 @@ class Component extends test
             ->if($component = new TestedModel())
             ->and($component->setIdentifier('norris'))
             ->and($component->setModel('chuck'))
-            ->string($component->getHash())->isEqualTo('chuck#s:6:"norris";')
-            ->string($component->getHashMigrated())->isEqualTo('chuck##norris')
+            ->string($component->getHash())->isEqualTo('chuck##norris')
         ;
     }
 
@@ -85,8 +69,7 @@ class Component extends test
             ->if($component = new TestedModel())
             ->and($component->setModel('chuck'))
             ->and($component->setIdentifier('norris'))
-            ->string($component->getHash())->isEqualTo('chuck#s:6:"norris";')
-            ->string($component->getHashMigrated())->isEqualTo('chuck##norris')
+            ->string($component->getHash())->isEqualTo('chuck##norris')
         ;
     }
 }

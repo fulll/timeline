@@ -32,9 +32,9 @@ class EntryUnaware extends test
     public function testGetIdent()
     {
         $this->if($entry = new TestedModel('model', 1))
-            ->string($entry->getIdent())->isEqualTo('model#s:1:"1";')
+            ->string($entry->getIdent())->isEqualTo('model##1')
             ->if($entry = new TestedModel('model', array(1, 2, 3)))
-            ->string($entry->getIdent())->isEqualTo('model#a:3:{i:0;i:1;i:1;i:2;i:2;i:3;}');
+            ->string($entry->getIdent())->isEqualTo('model##1');
         ;
     }
 

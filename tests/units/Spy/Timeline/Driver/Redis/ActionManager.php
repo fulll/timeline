@@ -38,7 +38,7 @@ class ActionManager extends test
             ->then(
                 $this->mock($componentDataResolver)->call('resolveComponentData')->withArguments($resolve)->exactly(1)
                 ->string($result->getModel())->isEqualTo($model)
-                ->array($result->getIdentifier())->isEqualTo($identifier)
+                ->string($result->getIdentifier())->isEqualTo('bar')
             )
         ;
     }

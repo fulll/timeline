@@ -24,7 +24,8 @@ class ResolveComponentModelIdentifier
     {
         $this->guardValidModelAndIdentifier($model, $identifier);
         $this->model = $model;
-        $this->identifier = $identifier;
+        $identifier = is_array($identifier) ? reset($identifier) : $identifier;
+        $this->identifier = (string) $identifier;
     }
 
     /**
