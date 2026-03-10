@@ -280,8 +280,8 @@ class QueryBuilder
 
                 // create new components
                 foreach ($subjects as $subject) {
-                    list ($model, $identifier) = explode('#', $subject);
-                    $components[] = $actionManager->createComponent($model, unserialize($identifier));
+                    list ($model, $identifier) = explode('##', $subject);
+                    $components[] = $actionManager->createComponent($model, $identifier);
                 }
             }
 

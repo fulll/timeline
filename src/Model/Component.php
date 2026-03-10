@@ -17,11 +17,14 @@ class Component implements ComponentInterface
     protected $model;
 
     /**
-     * @var array
+     * @var string
      */
     protected $identifier;
 
-    protected string|null $identifierMigrated = null;
+    /**
+     * @var array
+     */
+    protected $identifierBackup;
 
     /**
      * Data defined on this component.
@@ -34,22 +37,6 @@ class Component implements ComponentInterface
      * {@inheritdoc}
      */
     public function createFromHash($hash)
-    {
-        $data = explode('#', $hash);
-        if (count($data) == 1) {
-            throw new \InvalidArgumentException('Invalid hash, must be formatted {model}#{hash or identifier}');
-        }
-
-        $model      = array_shift($data);
-        $identifier = unserialize(implode('', $data));
-
-        $this->setModel($model);
-        $this->setIdentifier($identifier);
-
-        return $this;
-    }
-
-    public function createFromHashMigrated(string $hash): ComponentInterface
     {
         $data = explode('##', $hash);
         if (count($data) == 1) {
@@ -137,17 +124,8 @@ class Component implements ComponentInterface
      */
     public function setIdentifier($identifier)
     {
-        if (is_scalar($identifier)) {
-            // to avoid issue of serialization.
-            $identifier = (string) $identifier;
-        } elseif (!is_array($identifier)) {
-            throw new \InvalidArgumentException('Identifier must be a scalar or an array');
-        }
-
-        $this->identifier = $identifier;
-
-        $identifierMigrated = is_array($identifier) ? (string) reset($identifier) : $identifier;
-        $this->identifierMigrated = $identifierMigrated;
+        $identifier = is_array($identifier) ? reset($identifier) : $identifier;
+        $this->identifier = (string) $identifier;
 
         if (null !== $this->getModel()) {
             $this->buildHash();
@@ -162,10 +140,5 @@ class Component implements ComponentInterface
     public function getIdentifier()
     {
         return $this->identifier;
-    }
-
-    public function getIdentifierMigrated(): string|null
-    {
-        return $this->identifierMigrated;
     }
 }

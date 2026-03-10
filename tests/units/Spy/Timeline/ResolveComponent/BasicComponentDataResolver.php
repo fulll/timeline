@@ -42,7 +42,7 @@ class BasicComponentDataResolver extends test
         $resolve = new ResolveComponentModelIdentifier('user', $identifier);
 
         $this->if($object = new TestedModel())
-            ->array($object->resolveComponentData($resolve)->getIdentifier())->isEqualTo($identifier)
+            ->string($object->resolveComponentData($resolve)->getIdentifier())->isEqualTo('bar')
             ->string($object->resolveComponentData($resolve)->getModel())->isEqualTo('user')
             ->variable($object->resolveComponentData($resolve)->getData())->isNull()
         ;

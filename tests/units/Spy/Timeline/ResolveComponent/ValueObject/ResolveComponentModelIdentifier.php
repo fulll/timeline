@@ -53,14 +53,14 @@ class ResolveComponentModelIdentifier extends test
     {
         $identifier = array('foo' => 5, 'bar' => 'baz');
         $this->when($object = new TestedModel('user', $identifier))
-            ->variable($object->getIdentifier())->isIdenticalTo($identifier)
+            ->variable($object->getIdentifier())->isIdenticalTo('5')
         ;
     }
 
     public function testIdentifierCanBeIntegerZero()
     {
         $this->when($object = new TestedModel('user', 0))
-            ->integer($object->getIdentifier())->isZero()
+            ->string($object->getIdentifier())->isEqualTo('0')
         ;
     }
 

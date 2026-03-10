@@ -44,7 +44,8 @@ class ResolvedComponentData
         $this->guardValidIdentifier($identifier);
 
         $this->model = $model;
-        $this->identifier = $identifier;
+        $identifier = is_array($identifier) ? reset($identifier) : $identifier;
+        $this->identifier = (string) $identifier;
         $this->data = $data;
         $this->buildHash();
     }

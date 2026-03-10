@@ -78,7 +78,7 @@ class ResolvedComponentData extends test
 
         $this->if($action = new TestedModel($stringModel, $arrayIdentifier))
             ->string($action->getModel())->isEqualTo($stringModel)
-            ->array($action->getIdentifier())->isEqualTo($arrayIdentifier)
+            ->string($action->getIdentifier())->isEqualTo('bar')
         ;
     }
 
