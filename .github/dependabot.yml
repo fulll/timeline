@@ -1,0 +1,16 @@
+version: 2
+
+
+updates:
+  # Mise a jour des actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "chore"
+    labels:
+      - "dependency"
+      - "chore"
+    open-pull-requests-limit: 4
+    target-branch: "master"
